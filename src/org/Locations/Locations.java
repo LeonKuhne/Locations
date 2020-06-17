@@ -66,7 +66,7 @@ public class Locations extends JavaPlugin {
                     }
                     return;
                 case "delete":
-                    if (deregisterTeleport(name)) {
+                    if (unregisterTeleport(name)) {
                         tele.delete(name);
                         help(player, "Deleted location " + ChatColor.GREEN + name);
                     } else {
@@ -127,15 +127,15 @@ public class Locations extends JavaPlugin {
         }
     }
 
-    public boolean deregisterTeleport(String command) {
+    public boolean unregisterTeleport(String command) {
         try {
             Field bukkitCmdMap = getServer().getClass().getDeclaredField("commandMap");
             bukkitCmdMap.setAccessible(true);
             CommandMap cmdMap = (CommandMap) bukkitCmdMap.get(getServer());
 
-            // deregister old command
+            // unregister old command
             TeleportCommand tpCommand = shortcuts.get(command);
-            tpCommand.deregister(cmdMap);
+            tpCommand.unregister(cmdMap);
 
             return true;
         } catch (Exception e) {
