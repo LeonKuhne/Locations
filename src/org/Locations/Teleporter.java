@@ -46,7 +46,7 @@ public class Teleporter {
 
                  // wait for delay
                 Location before = player.getLocation().clone();
-                player.sendMessage("waiting " + ChatColor.AQUA + delay + ChatColor.RESET + " seconds");
+                player.sendMessage("waiting " + ChatColor.AQUA + worldLocs.delay + ChatColor.RESET + " seconds");
 
                 scheduler.runTaskLater(plugin, () -> {
 
