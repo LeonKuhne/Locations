@@ -4,7 +4,7 @@ description:
 author: leee leee
 website: denmc.online
 
-main: hvh.org.Locations
+main: org.Locations.Locations
 
 commands:
     locations:
