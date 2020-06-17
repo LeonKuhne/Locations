@@ -141,7 +141,7 @@ public class Locations extends JavaPlugin {
 
     public boolean registerTeleport(String string) throws Exception {
         TeleportCommand tpCommand = new TeleportCommand(string, tele);
-        getCommandMap().register(command, tpCommand);
+        getCommandMap().register(string, tpCommand);
         shortcuts.put(command, tpCommand);
     }
 
