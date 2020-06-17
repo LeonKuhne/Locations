@@ -26,6 +26,8 @@ public class Teleporter {
         scheduler = plugin.getServer().getScheduler();
         locations = new HashMap();
         lastLocs = new HashMap();
+
+        updateWorlds();
     }
 
 
@@ -46,13 +48,10 @@ public class Teleporter {
                     worldLocs.save(player);
                 }
 
-                 // wait for delay
+                // teleport after delay
                 Location before = player.getLocation().clone();
                 long tickDelay = worldLocs.delay * 100l;
                 player.sendMessage("waiting " + ChatColor.AQUA + tickDelay + ChatColor.RESET + " ticks");
-
-
-
                 scheduler.runTaskLater(plugin, () -> {
 
                     // check if moved
@@ -129,5 +128,13 @@ public class Teleporter {
 
     public String toString() {
         return getNames().toString();
+    }
+
+    public void updateWorlds() {
+        for (World world : plugin.getServer().getWorlds()) {
+            if (!lastLocs.containsKey(world)) {
+                lastLocs.put(world, new WorldLocations());
+            }
+        }
     }
 }

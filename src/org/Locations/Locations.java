@@ -74,8 +74,15 @@ public class Locations extends JavaPlugin {
             // list current locations
             help(player, tele.toString());
             return;
+        }
+        
+        else if (args.size == 1 && args.get(0).equals("reload")) {
+            help(player, "Reloading worlds");
+            tele.updateWorlds();
+            return;
+        }
 
-        } else if (args.size() >= 2) {
+        else if (args.size() >= 2) {
             String cmd = args.remove(0).toLowerCase();
             String name = args.remove(0).toLowerCase();
 
@@ -145,7 +152,7 @@ public class Locations extends JavaPlugin {
                     return;
 
                 default:
-                    help(player, "unknown command: " + ChatColor.RED + cmd);
+                    help(player, "Unknown command: " + ChatColor.RED + cmd);
             }
         }
 
@@ -155,6 +162,7 @@ public class Locations extends JavaPlugin {
         help(player, ChatColor.GREEN + "delete [name]");
         help(player, ChatColor.GREEN + "remember [name] [true/false]");
         help(player, ChatColor.GREEN + "delay [name] [sec]");
+        help(player, ChatColor.GREEN + "reload");
         help(player, ChatColor.GREEN + "(nothing)");
         return;
     }
