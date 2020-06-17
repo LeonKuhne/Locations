@@ -116,7 +116,7 @@ public class Locations extends JavaPlugin {
                             remember = tele.remember(name);
                         }
 
-                        help(player, "World location remembering set to " + ChatColor.GOLD + player.getWorld().getName() + ChatColor.RESET + " set to " + ChatColor.GREEN + remember);
+                        help(player, "Location remembering for " + ChatColor.GOLD + player.getWorld().getName() + ChatColor.RESET + " is set to " + ChatColor.GREEN + remember);
 
                     } catch (Exception e) {
                         error(player, e.getMessage());
@@ -138,7 +138,7 @@ public class Locations extends JavaPlugin {
                             delay = tele.delay(name);
                         }
 
-                        help(player, "delay is set to " + ChatColor.GREEN + delay);
+                        help(player, "Delay for " + ChatColor.GOLD + player.getWorld().getName() + ChatColor.RESET + " is set to " + ChatColor.GREEN + delay);
                     } catch (Exception e) {
                         error(player, e.getMessage());
                     }
