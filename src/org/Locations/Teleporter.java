@@ -33,6 +33,7 @@ public class Teleporter {
     //
     
     public void teleport(Player player, String name) {
+        player.sendMessage("teleporting player");
         World world = player.getWorld();
 
         if (lastLocs.containsKey(world)) {

@@ -22,7 +22,6 @@ public class TeleportCommand extends Command {
     public boolean execute(CommandSender cs, String string, String[] args) {
         if (isRegistered() && cs instanceof Player) {
             Player player = (Player) cs;
-            player.sendMessage("executed command: " + string);
 
             String name = string.toLowerCase();
             tele.teleport(player, name);
