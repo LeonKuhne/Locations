@@ -2,6 +2,7 @@ package org.Locations;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -19,10 +20,12 @@ public class TeleportCommand extends Command {
 
     @Override
     public boolean execute(CommandSender cs, String string, String[] args) {
-        System.out.println("im getting it too!");
         if (cs instanceof Player) {
             Player player = (Player) cs;
-            tele.teleport(player, string.toLowerCase());
+
+            String name = string.toLowerCase();
+            player.sendMessage("Teleported to " + ChatColor.GREEN + name);
+            tele.teleport(player, name);
             return true;
         }
 
