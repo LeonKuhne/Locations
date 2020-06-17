@@ -3,7 +3,7 @@ package org.Locations;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
-import java.util.Math;
+import java.lang.Math;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
 import org.bukkit.World;
