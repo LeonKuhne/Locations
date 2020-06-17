@@ -45,7 +45,7 @@ public class Locations extends JavaPlugin {
             
             // command is locs or locations && player has permissions
             else if (player.isOp() && (string.equals("locs") || string.equals("locations"))) {
-                locsHandler(player, new ArrayList(Arrays.toList(args)));
+                locsHandler(player, new ArrayList(Arrays.asList(args)));
                 return true;
             }
 		}
