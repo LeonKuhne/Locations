@@ -24,10 +24,10 @@ public class Teleporter {
     //
     
     public void teleport(Player player, String name) {
-        // save world location
-        WorldLocations worldLocs = getWorldLocationsByName(name);
         World world = player.getWorld();
-        if (containsKey(world)) {
+
+        // save world location
+        if (lastLocs.containsKey(world)) {
             WorldLocations worldLocs = lastLocs.get(world);
             if (worldLocs.remember){
                 worldLocs.save(player);
