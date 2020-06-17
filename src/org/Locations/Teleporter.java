@@ -36,6 +36,7 @@ public class Teleporter {
         World world = player.getWorld();
 
         if (lastLocs.containsKey(world)) {
+            player.sendMessage("found world " + world);
             WorldLocations worldLocs = lastLocs.get(world);
 
             // save world location
@@ -46,9 +47,10 @@ public class Teleporter {
 
                  // wait for delay
                 Location before = player.getLocation().clone();
-                player.sendMessage("waiting " + ChatColor.AQUA + worldLocs.delay + ChatColor.RESET + " seconds");
-
                 long tickDelay = worldLocs.delay * 100l;
+                player.sendMessage("waiting " + ChatColor.AQUA + tickDelay + ChatColor.RESET + " ticks");
+
+
 
                 scheduler.runTaskLater(plugin, () -> {
 
