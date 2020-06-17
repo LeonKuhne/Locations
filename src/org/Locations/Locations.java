@@ -38,12 +38,6 @@ public class Locations extends JavaPlugin {
         // is player
         if (cs instanceof Player) {
             Player player = (Player) cs;
-
-            // teleport shortcut
-            if (tele.getNames().contains(string)) {
-                tele.teleport(player, string);
-                return true;
-            }
             
             // admin commands
             else if (player.isOp() && (string.equals("locs") || string.equals("locations"))) {
@@ -100,7 +94,7 @@ public class Locations extends JavaPlugin {
     /**
      * Register additional commands, used by shortcut teleports
      */
-    public void registerTeleport(String command, Location loc) {
+    public void registerTeleport(String command) {
         Field bukkitCmdMap = getServer().getClass().getDeclaredField("commandMap");
         bukkitCmdMap.setAccessible(true);
         CommandMap cmdMap = (CommandMap) bukkitCmdMap.get(getServer());
