@@ -14,7 +14,7 @@ public class WorldLocations extends JavaPlugin {
     public boolean remember;
     public int delay;
 
-    public Teleporter() {
+    public WorldLocations() {
         lastLocations = new HashMap();
 
         load();
