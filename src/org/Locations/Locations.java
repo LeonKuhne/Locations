@@ -77,7 +77,7 @@ public class Locations extends JavaPlugin {
                     } else {
                         delay = tele.delay(name);
                     }
-                    help(player, "delay is set to " + ChatColor.GREEN + delay;
+                    help(player, "delay is set to " + ChatColor.GREEN + delay);
                     return;
                 case "help":
                     break;
