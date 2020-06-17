@@ -17,6 +17,7 @@ public class Teleporter {
 
     public Teleporter() {
         locations = new HashMap();
+        lastLocs = new HashMap();
     }
 
 
