@@ -29,7 +29,7 @@ public class Teleporter {
         // save world location
         if (lastLocs.containsKey(world)) {
             WorldLocations worldLocs = lastLocs.get(world);
-            if (worldLocs.remember){
+            if (worldLocs != null && worldLocs.remember){
                 worldLocs.save(player);
             }
         }
