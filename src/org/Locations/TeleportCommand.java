@@ -17,11 +17,14 @@ public class TeleportCommand extends Command {
     }
 
     @Override
-    public execute(CommandSender cs, String string, String[] args) {
+    public boolean execute(CommandSender cs, String string, String[] args) {
         if (cs instanceof Player) {
             Player player = (Player) cs;
-            tele.teleport(player, name)
+            tele.teleport(player, name);
+            return true;
         }
+
+        return false;
     }
 
 }
