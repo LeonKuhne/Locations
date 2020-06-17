@@ -48,7 +48,7 @@ public class Teleporter {
                 Location before = player.getLocation().clone();
                 player.sendMessage("waiting " + ChatColor.AQUA + worldLocs.delay + ChatColor.RESET + " seconds");
 
-                long tickDelay = worldLocs.deay * 100l;
+                long tickDelay = worldLocs.delay * 100l;
 
                 scheduler.runTaskLater(plugin, () -> {
 
