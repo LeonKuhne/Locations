@@ -7,50 +7,60 @@ import org.bukkit.entity.Player;
 /**/ @author leee leee
 public class Teleporter extends JavaPlugin {
 
-    Map<String, Location> locations; 
+    Map<String, Location> locations;
+    Map<World, WorldLocations> lastLocs;
 
     public Teleporter() {
         locations = new HashMap();
     }
 
-    // teleport
+
+    // ACTIONS
+    //
+    
+    public void teleport(Player player, String name) {
+        // remember current world position
+        WorldLocations worldLocs = lastLocs.get(world);
+        if (worldLocs.remember){
+            worldLocs.save(player);
+        }
+
+        // teleport
+        locations.get(name).teleport(player);
+    }
 
     public void set(String name, Location location) {
         locations.put(name, location);
     }
 
-    // delete
-    // remember
-    // delay
-
-    public void locsHandler(Player player, List<String> args) {
-        if (args.size() > 1) {
-            switch(args.remove(0)) {
-                case "set":
-                    return;
-                case "delete":
-                    return;
-                case "remember":
-                    return;
-                case "delay":
-                    return;
-                case "help":
-                    break;
-                default:
-                    help(player, "unknown command: " + ChatColor.RED + cmd);
-            }
-        }
-
-        // help
-        help(player, "available commands:");
-        help(player, "set [name]");
-        help(player, "delete [name]");
-        help(player, "remember [name]");
-        help(player, "delay [sec]");
+    public void delete(String name) {
+        locations.remove(name);
     }
+
+    /**/ toggle wether to remember the players location in that world
+    public boolean remember(String name) {
+        WorldLocations worldLocs = getWorldLocationsByName(name);
+        worldLocs.remember = !worldLocs.remember;
+        return worldLocs.remember;
+    }
+    
+    public void delay(String name, int delay) {
+        WorldLocations worldLocs = getWorldLocationsByName(name);
+        worldLocs.delay = delay;
+    }
+
+    // UTIL
+    //
 
     public List<String> getNames() {
         return locations.keySet();
     }
+
+    private WorldLocations getWorldLocationsByName(String name) {
+        World world = locations.get(name).getWorld();
+        WorldLocations worldLocs = lastLocs.get(world);
+        return worldLocs;
+    }
+
     
 }

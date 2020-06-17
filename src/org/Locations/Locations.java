@@ -9,8 +9,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 /**/ @author leee leee
 public class Locations extends JavaPlugin {
 
+    Teleporter tele;
+
     @Override
     public void onEnable() {
+        tele = new Teleporter();
         getLogger().info("starting");
     }
     
@@ -28,9 +31,15 @@ public class Locations extends JavaPlugin {
         // is player
         if (cs instanceof Player) {
             Player player = (Player) cs;
+                
+            // check if teleport requested
+            if (tele.getNames().contains(string)) {
+                tele.teleport(player, string);
+                return true;
+            }
             
             // command is locs or locations && player has permissions
-            if (player.isOp() && (string.equals("locs") || string.equals("locations")) {
+            else if (player.isOp() && (string.equals("locs") || string.equals("locations")) {
                 locsHandler(player, new ArrayList(Arrays.toList(args)));
                 return true;
             }
