@@ -84,14 +84,19 @@ public class Locations extends JavaPlugin {
                 default:
                     help(player, "unknown command: " + ChatColor.RED + cmd);
             }
+
+            // help
+            help(player, "available commands:");
+            help(player, "set [name]");
+            help(player, "delete [name]");
+            help(player, "remember [name]");
+            help(player, "delay [name] [sec]");
+            help(player, "(nothing)");
+ 
         }
 
-        // help
-        help(player, "available commands:");
-        help(player, "set [name]");
-        help(player, "delete [name]");
-        help(player, "remember [name]");
-        help(player, "delay [name] [sec]");
+        // show all current locations
+        help(player, tele);
     }
 
     /**

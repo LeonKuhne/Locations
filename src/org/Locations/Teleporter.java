@@ -78,4 +78,8 @@ public class Teleporter {
         WorldLocations worldLocs = lastLocs.get(world);
         return worldLocs;
     }
+
+    public String toString() {
+        return getNames().toString();
+    }
 }
