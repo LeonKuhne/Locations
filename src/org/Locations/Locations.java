@@ -38,9 +38,9 @@ public class Locations extends JavaPlugin {
         // is player
         if (cs instanceof Player) {
             Player player = (Player) cs;
-            
+           
             // admin commands
-            else if (player.isOp() && (string.equals("locs") || string.equals("locations"))) {
+            if (player.isOp() && (string.equals("locs") || string.equals("locations"))) {
                 locsHandler(player, new ArrayList(Arrays.asList(args)));
                 return true;
             }
