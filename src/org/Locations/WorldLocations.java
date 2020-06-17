@@ -31,7 +31,7 @@ public class WorldLocations {
     public void save(Player player) {
         Location loc = player.getLocation().clone();
 
-        if (!lastLocations.contains(player)) {
+        if (!lastLocations.containsKey(player)) {
             // create
             Map<World, Location> worlds = new HashMap();
             worlds.put(player.getWorld(), loc);
