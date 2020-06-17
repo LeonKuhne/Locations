@@ -56,7 +56,7 @@ public class Teleporter {
                     } else {
                         player.sendMessage(ChatColor.RED + "tp failed, you moved!");
                     }
-                }, worldLocs.delay);
+                }, worldLocs.delay * 1000l);
             }
         }
     }
