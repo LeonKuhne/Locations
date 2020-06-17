@@ -77,11 +77,11 @@ public class Locations extends JavaPlugin {
                         tele.delete(name);
                         help(player, "Deleted location " + ChatColor.GREEN + name);
                     } else {
-                        help(player, "Failed to delet " + ChatColor.RED + name);
+                        help(player, "Failed to delete " + ChatColor.RED + name);
                     }
                     return;
                 case "remember":
-                    tele.remember(name);
+                    help(player, "Toggled remembering last location for world: " + ChatColor.GREEN + tele.remember(name));
                     return;
                 case "delay":
                     int delay;
