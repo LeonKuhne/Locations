@@ -61,7 +61,8 @@ public class Teleporter {
     //
     
     public int delay(String name) {
-        return delay;
+        WorldLocations worldLocs = getWorldLocationsByName(name);
+        return worldLocs.delay;
     }
 
     public Set<String> getNames() {
