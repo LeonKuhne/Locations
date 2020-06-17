@@ -18,6 +18,7 @@ public class Teleporter {
     private BukkitScheduler scheduler;
     private Map<String, Location> locations;
     private Map<World, WorldLocations> lastLocs;
+    private Plugin plugin;
 
 
     public Teleporter(Plugin plugin) {
