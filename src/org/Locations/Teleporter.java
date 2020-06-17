@@ -74,6 +74,4 @@ public class Teleporter {
         WorldLocations worldLocs = lastLocs.get(world);
         return worldLocs;
     }
-
-    
 }

@@ -100,10 +100,10 @@ public class Locations extends JavaPlugin {
     /**
      * Register additional commands, used by shortcut teleports
      */
-    public void registerCommand(String command) {
+    public void registerTeleport(String command, Location loc) {
         Field bukkitCmdMap = getServer().getClass().getDeclaredField("commandMap");
         bukkitCmdMap.setAccessible(true);
         CommandMap cmdMap = (CommandMap) bukkitCmdMap.get(getServer());
-        cmdMap.register(command, new TeleportCommand(command, this));
+        cmdMap.register(command, new TeleportCommand(command, tele));
     }
 }
