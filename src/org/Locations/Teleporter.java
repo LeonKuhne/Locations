@@ -47,15 +47,16 @@ public class Teleporter {
                 }
 
                 // teleport after delay
-                Location before = player.getLocation().clone();
-                long tickDelay = worldLocs.delay * 20l;
 
-                if (delay > 0) {
+                long tickDelay = 0;
+                if (worldLocs.delay > 0) {
+                    tickDelay = worldLocs.delay * 20l;
                     player.sendMessage("Stand still for " + ChatColor.AQUA + tickDelay + ChatColor.RESET + " ticks");
                 }
 
+                // teleport after delay
+                Location before = player.getLocation().clone();
                 scheduler.runTaskLater(plugin, () -> {
-
                     // check if moved
                     if (delay == 0 || before.equals(player.getLocation())) {
                         
