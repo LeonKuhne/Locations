@@ -35,11 +35,11 @@ public class WorldLocations {
             // create
             Map<World, Location> worlds = new HashMap();
             worlds.put(player.getWorld(), loc);
-            lastlocations.put(player, worlds);
+            lastLocations.put(player, worlds);
 
         } else {
             // add
-            List<Location> worlds = lastLocations.get(player);
+            Map<World, Location> worlds = lastLocations.get(player);
             worlds.put(player.getWorld(), loc);
         }
     }
