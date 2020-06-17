@@ -80,6 +80,7 @@ public class Locations extends JavaPlugin {
             String name = args.remove(0).toLowerCase();
 
             switch(cmd) {
+
                 case "set":
                     try {
                         registerTeleport(name);
@@ -89,6 +90,7 @@ public class Locations extends JavaPlugin {
                         error(player, e.getMessage() + ChatColor.RED + name);
                     }
                     return;
+
                 case "delete":
                     try {
                         unregisterTeleport(name);
@@ -98,34 +100,48 @@ public class Locations extends JavaPlugin {
                         error(player, e.getMessage());
                     }
                     return;
+
                 case "remember":
                     try {
-                        boolean remember = tele.remember(name);
+                        boolean remember;
+
+                        // set
                         if (args.size() > 0) {
-                            boolean remember = Boolean.parseBoolean(args.get(0));
+                            remember = Boolean.parseBoolean(args.get(0));
                             tele.remember(name, remember);
-                            help(player, "Set location remembering for " + ChatColor.GOLD + player.getWorld().getName() + ChatColor.RESET + " set to " + ChatColor.GREEN + remember);
+                        
+                            // get
                         } else {
-                            help(player, ChatColor.GOLD + player.getWorld().getName() + ChatColor.RESET + " remembers last locations: " + ChatColor.AQUA + tele.remember(name));
+                            remember = tele.remember(name);
                         }
+
+                        help(player, "World location remembering set to " + ChatColor.GOLD + player.getWorld().getName() + ChatColor.RESET + " set to " + ChatColor.GREEN + remember);
+
                     } catch (Exception e) {
                         error(player, e.getMessage());
                     }
                     return;
+
                 case "delay":
                     try {
                         int delay;
+
+                        // set
                         if (args.size() > 0) {
                             delay = Integer.parseInt(args.get(0));
                             tele.delay(name, delay);
+
+                        // get
                         } else {
                             delay = tele.delay(name);
                         }
+
                         help(player, "delay is set to " + ChatColor.GREEN + delay);
                     } catch (Exception e) {
                         error(player, e.getMessage());
                     }
                     return;
+
                 default:
                     help(player, "unknown command: " + ChatColor.RED + cmd);
             }
