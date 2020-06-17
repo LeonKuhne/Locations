@@ -52,7 +52,7 @@ public class Locations extends JavaPlugin {
     public void locsHandler(Player player, List<String> args) {
         if (args.size() > 1) {
             String cmd = args.remove(0);
-            String name = args.remove(0);
+            String name = args.remove(0).toLowerCase();
 
             switch(cmd) {
                 case "set":
