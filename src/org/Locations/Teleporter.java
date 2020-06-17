@@ -25,7 +25,7 @@ public class Teleporter {
     
     public void teleport(Player player, String name) {
         // remember current world position
-        WorldLocations worldLocs = lastLocs.get(world);
+        WorldLocations worldLocs = lastLocs.get(player.getWorld());
         if (worldLocs.remember){
             worldLocs.save(player);
         }
