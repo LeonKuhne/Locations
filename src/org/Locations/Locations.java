@@ -65,23 +65,29 @@ public class Locations extends JavaPlugin {
 
             switch(cmd) {
                 case "set":
-                    if (registerTeleport(name)) {
+                    try {
+                        registerTeleport(name);
                         tele.set(name, player.getLocation());
                         help(player, "Added location " + ChatColor.GREEN + name);
-                    } else {
-                        help(player, "Failed to use name " + ChatColor.RED + name);
+                    } catch (Exception e) {
+                        help(player, "Failed to create command for " + ChatColor.RED + name);
                     }
                     return;
                 case "delete":
-                    if (unregisterTeleport(name)) {
+                    try (unregisterTeleport(name)) {
                         tele.delete(name);
                         help(player, "Deleted location " + ChatColor.GREEN + name);
-                    } else {
+                    } catch (Exception e) {
                         help(player, "Failed to delete " + ChatColor.RED + name);
                     }
                     return;
                 case "remember":
-                    help(player, "Toggled remembering last location for world: " + ChatColor.GREEN + tele.remember(name));
+                    try {
+                        boolean remember = tele.remember(name);
+                        help(player, "Toggled remembering last location for world: " + ChatColor.GREEN + remember);
+                    } catch (Exception e) {
+                        help(player, e.message + ChatColor.RED + remember);
+                    }
                     return;
                 case "delay":
                     int delay;
@@ -108,40 +114,25 @@ public class Locations extends JavaPlugin {
         return;
     }
 
-    /**
-     * Register additional commands, used by shortcut teleports
-     */
-    public boolean registerTeleport(String command) {
-        try {
-            Field bukkitCmdMap = getServer().getClass().getDeclaredField("commandMap");
-            bukkitCmdMap.setAccessible(true);
-            CommandMap cmdMap = (CommandMap) bukkitCmdMap.get(getServer());
-            
-            // register new command
-            TeleportCommand tpCommand = new TeleportCommand(command, tele);
-            cmdMap.register(command, tpCommand);
-            shortcuts.put(command, tpCommand);
 
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    /**
+     * Register and Unregister new commands for shortcut teleports
+     */
+
+    public boolean registerTeleport(String string) throws Exception {
+        TeleportCommand tpCommand = new TeleportCommand(string, tele);
+        getCommandMap().register(command, tpCommand);
+        shortcuts.put(command, tpCommand);
     }
 
-    public boolean unregisterTeleport(String command) {
-        try {
-            Field bukkitCmdMap = getServer().getClass().getDeclaredField("commandMap");
-            bukkitCmdMap.setAccessible(true);
-            CommandMap cmdMap = (CommandMap) bukkitCmdMap.get(getServer());
+    public boolean unregisterTeleport(String string) throws Exception {
+        Command tpCommand = shortcuts.remove(string);
+        tpCommand.unregister(getCommandMap());
+    }
 
-            // unregister old command
-            Command tpCommand = shortcuts.get(command);
-            tpCommand.unregister(cmdMap);
-            shortcuts.remove(command);
-
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    private CommandMap getCommandMap() throws Exception {
+        Field bukkitCmdMap = getServer().getClass().getDeclaredField("commandMap");
+        bukkitCmdMap.setAccessible(true);
+        return (CommandMap) bukkitCmdMap.get(getServer());
     }
 }

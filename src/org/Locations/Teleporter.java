@@ -52,18 +52,13 @@ public class Teleporter {
      */
     public boolean remember(String name) {
         WorldLocations worldLocs = getWorldLocationsByName(name);
-        if (worldLocs != null) {
-            worldLocs.remember = !worldLocs.remember;
-            return worldLocs.remember;
-        }
-        return false;
+        worldLocs.remember = !worldLocs.remember;
+        return worldLocs.remember;
     }
     
     public void delay(String name, int delay) {
         WorldLocations worldLocs = getWorldLocationsByName(name);
-        if (worldLocs != null) {
-            worldLocs.delay = delay;
-        }
+        worldLocs.delay = delay;
     }
 
 
@@ -79,15 +74,25 @@ public class Teleporter {
         return locations.keySet();
     }
 
-    private WorldLocations getWorldLocationsByName(String name) {
+    private WorldLocations getWorldLocationsByName(String name) throws Exception {
         if (locations.containsKey(name)) {
             World world = locations.get(name).getWorld();
+            WorldLocations worldLocs;
+
+            // search for world details, if they exist
             if (lastLocs.containsKey(world)) {
-                WorldLocations worldLocs = lastLocs.get(world);
-                return worldLocs;
+                worldLocs = lastLocs.get(world);
+
+            // create world details
+            } else {
+                worldLocs = new WorldLocation()
+                lastLocs.put(world, worldLocs);
             }
+            
+            return worldLocs;
         }
-        return null;
+
+        throw new Exception("Location not defined yet");
     }
 
     public String toString() {
