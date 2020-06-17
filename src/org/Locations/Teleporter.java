@@ -2,6 +2,7 @@ package org.Locations;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -58,7 +59,7 @@ public class Teleporter {
     // UTIL
     //
 
-    public List<String> getNames() {
+    public Set<String> getNames() {
         return locations.keySet();
     }
 

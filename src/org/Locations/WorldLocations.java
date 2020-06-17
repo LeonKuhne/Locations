@@ -3,6 +3,7 @@ package org.Locations;
 import java.util.Map;
 import java.util.HashMap;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 /**
@@ -10,17 +11,15 @@ import org.bukkit.entity.Player;
  */
 public class WorldLocations {
     
-    private Map<Player, Set<Location>> lastLocations;
+    private Map<Player, Map<World, Location>> lastLocations;
 
     public boolean remember;
     public int delay;
 
     public WorldLocations() {
         lastLocations = new HashMap();
-
         load();
     }
-
 
 
     // ACTIONS
@@ -34,15 +33,21 @@ public class WorldLocations {
 
         if (!lastLocations.contains(player)) {
             // create
-            List<Location> lastLocs = new HashSet();
-            lastLocs.add(loc);
-            lastlocations.put(player, lastLocs);
+            Map<World, Location> worlds = new HashMap();
+            worlds.put(player.getWorld(), loc);
+            lastlocations.put(player, worlds);
 
         } else {
             // add
-            List<Location> lastLocs = lastLocations.get(player);
-            lastLocs.add(loc);
+            List<Location> worlds = lastLocations.get(player);
+            worlds.put(player.getWorld(), loc);
         }
+    }
+
+    public void teleport(Player player) {
+        Map<World, Location> worlds = lastLocations.get(player);
+        Location loc = worlds.get(player.getWorld());
+        player.teleport(loc);
     }
 
 
