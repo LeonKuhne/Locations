@@ -48,6 +48,8 @@ public class Teleporter {
                 Location before = player.getLocation().clone();
                 player.sendMessage("waiting " + ChatColor.AQUA + worldLocs.delay + ChatColor.RESET + " seconds");
 
+                long tickDelay = worldLocs.deay * 100l;
+
                 scheduler.runTaskLater(plugin, () -> {
 
                     // check if moved
@@ -59,7 +61,7 @@ public class Teleporter {
                     } else {
                         player.sendMessage(ChatColor.RED + "you moved! failed tp");
                     }
-                }, worldLocs.delay * 100l);
+                }, tickDelay);
             }
         }
     }
