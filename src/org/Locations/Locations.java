@@ -56,9 +56,12 @@ public class Locations extends JavaPlugin {
 
             switch(cmd) {
                 case "set":
-                    tele.set(name, player.getLocation());
-                    registerTeleport(name);
-                    help(player, "Set spawn for " + ChatColor.GREEN + name);
+                    if (registerTeleport(name)) {
+                        tele.set(name, player.getLocation());
+                        help(player, "Added location " + ChatColor.GREEN + name);
+                    } else {
+                        help(player, "Failed to use name " + ChatColor.RED + name);
+                    }
                     return;
                 case "delete":
                     tele.delete(name);
@@ -94,10 +97,15 @@ public class Locations extends JavaPlugin {
     /**
      * Register additional commands, used by shortcut teleports
      */
-    public void registerTeleport(String command) {
-        Field bukkitCmdMap = getServer().getClass().getDeclaredField("commandMap");
-        bukkitCmdMap.setAccessible(true);
-        CommandMap cmdMap = (CommandMap) bukkitCmdMap.get(getServer());
-        cmdMap.register(command, new TeleportCommand(command, tele));
+    public boolean registerTeleport(String command) {
+        try {
+            Field bukkitCmdMap = getServer().getClass().getDeclaredField("commandMap");
+            bukkitCmdMap.setAccessible(true);
+            CommandMap cmdMap = (CommandMap) bukkitCmdMap.get(getServer());
+            cmdMap.register(command, new TeleportCommand(command, tele));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
