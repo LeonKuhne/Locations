@@ -16,10 +16,12 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class Locations extends JavaPlugin {
 
-    Teleporter tele;
+    private Teleporter tele;
+    private Map<String, Command> shortcuts;
 
     @Override
     public void onEnable() {
+        shortcuts = new HashMap();
         tele = new Teleporter();
         getLogger().info("starting");
     }
@@ -64,7 +66,12 @@ public class Locations extends JavaPlugin {
                     }
                     return;
                 case "delete":
-                    tele.delete(name);
+                    if (deregisterTeleport(name)) {
+                        tele.delete(name);
+                        help(player, "Deleted location " + ChatColor.GREEN + name);
+                    } else {
+                        help(player, "Failed to delet " + ChatColor.RED + name);
+                    }
                     return;
                 case "remember":
                     tele.remember(name);
@@ -108,7 +115,28 @@ public class Locations extends JavaPlugin {
             Field bukkitCmdMap = getServer().getClass().getDeclaredField("commandMap");
             bukkitCmdMap.setAccessible(true);
             CommandMap cmdMap = (CommandMap) bukkitCmdMap.get(getServer());
-            cmdMap.register(command, new TeleportCommand(command, tele));
+            
+            // register new command
+            TeleportCommand tpCommand = new TeleportCommand(command, tele);
+            cmdMap.register(command, tpCommand);
+            shortcuts.put(command, tpCommand);
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean deregisterTeleport(String command) {
+        try {
+            Field bukkitCmdMap = getServer().getClass().getDeclaredField("commandMap");
+            bukkitCmdMap.setAccessible(true);
+            CommandMap cmdMap = (CommandMap) bukkitCmdMap.get(getServer());
+
+            // deregister old command
+            TeleportCommand tpCommand = shortcuts.get(command);
+            tpCommand.deregister(cmdMap);
+
             return true;
         } catch (Exception e) {
             return false;
