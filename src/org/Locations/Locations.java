@@ -54,7 +54,11 @@ public class Locations extends JavaPlugin {
     }
 
     public void locsHandler(Player player, List<String> args) {
-        if (args.size() >= 2) {
+        if (args.size() == 0) {
+            // list current locations
+            help(player, tele.toString());           
+
+        } else if (args.size() >= 2) {
             String cmd = args.remove(0).toLowerCase();
             String name = args.remove(0).toLowerCase();
 
@@ -91,19 +95,16 @@ public class Locations extends JavaPlugin {
                 default:
                     help(player, "unknown command: " + ChatColor.RED + cmd);
             }
-        } else if (args.size() >= 1) {
-            // help
-            help(player, "available commands:");
-            help(player, "set [name]");
-            help(player, "delete [name]");
-            help(player, "remember [name]");
-            help(player, "delay [name] [sec]");
-            help(player, "(nothing)");
-            return;
         }
 
-        // show all current locations
-        help(player, tele.toString());
+        // help
+        help(player, "available commands:");
+        help(player, "set [name]");
+        help(player, "delete [name]");
+        help(player, "remember [name]");
+        help(player, "delay [name] [sec]");
+        help(player, "(nothing)");
+        return;
     }
 
     /**
