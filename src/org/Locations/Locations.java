@@ -55,16 +55,29 @@ public class Locations extends JavaPlugin {
 
     public void locsHandler(Player player, List<String> args) {
         if (args.size() > 1) {
-
             String cmd = args.remove(0);
+            String name = args.remove(0);
+
             switch(cmd) {
                 case "set":
+                    tele.set(name, player.getLocation());
+                    help(player, "Set spawn for " + ChatColor.GREEN + name);
                     return;
                 case "delete":
+                    tele.delete(name);
                     return;
                 case "remember":
+                    tele.remember(name);
                     return;
                 case "delay":
+                    int delay;
+                    if (args.size() > 0) {
+                        delay = Integer.parseInt(args.get(0));
+                        tele.delay(name, delay);
+                    } else {
+                        delay = tele.delay(name);
+                    }
+                    help(player, "delay is set to " + ChatColor.GREEN + delay;
                     return;
                 case "help":
                     break;
@@ -78,6 +91,6 @@ public class Locations extends JavaPlugin {
         help(player, "set [name]");
         help(player, "delete [name]");
         help(player, "remember [name]");
-        help(player, "delay [sec]");
+        help(player, "delay [name] [sec]");
     }
 }

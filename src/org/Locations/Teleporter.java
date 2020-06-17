@@ -56,8 +56,13 @@ public class Teleporter {
         worldLocs.delay = delay;
     }
 
+
     // UTIL
     //
+    
+    public void delay(String name) {
+        return delay;
+    }
 
     public Set<String> getNames() {
         return locations.keySet();
