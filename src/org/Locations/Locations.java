@@ -88,11 +88,12 @@ public class Locations extends JavaPlugin {
 
             switch(cmd) {
 
+                case "add":
                 case "set":
                     try {
                         registerTeleport(name);
                         tele.set(name, player.getLocation());
-                        help(player, "Added location " + ChatColor.GREEN + name);
+                        help(player, "Set location " + ChatColor.GREEN + name);
                     } catch (Exception e) {
                         error(player, e.getMessage() + ChatColor.RED + name);
                     }
@@ -158,7 +159,7 @@ public class Locations extends JavaPlugin {
 
         // help
         help(player, "available commands:");
-        help(player, ChatColor.GREEN + "set [name]");
+        help(player, ChatColor.GREEN + "set/add [name]");
         help(player, ChatColor.GREEN + "delete [name]");
         help(player, ChatColor.GREEN + "remember [name] [true/false]");
         help(player, ChatColor.GREEN + "delay [name] [sec]");
