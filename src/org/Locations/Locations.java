@@ -6,7 +6,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
-/**/ @author leee leee
+/**
+ * @author leee leee
+ */
 public class Locations extends JavaPlugin {
 
     Teleporter tele;

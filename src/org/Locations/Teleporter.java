@@ -4,7 +4,9 @@ import java.util.Map;
 import java.util.HashMap;
 import org.bukkit.entity.Player;
 
-/**/ @author leee leee
+/**
+ * @author leee leee
+ */
 public class Teleporter extends JavaPlugin {
 
     Map<String, Location> locations;

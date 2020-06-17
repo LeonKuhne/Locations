@@ -4,7 +4,9 @@ import java.util.Map;
 import java.util.HashMap;
 import org.bukkit.Location;
 
-/**/ @author leee leee
+/**
+ * @author leee leee
+ */
 public class WorldLocations extends JavaPlugin {
     
     private Map<Player, Set<Location>> lastLocations;
