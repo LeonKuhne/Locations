@@ -51,13 +51,19 @@ public class Teleporter {
      */
     public boolean remember(String name) {
         WorldLocations worldLocs = getWorldLocationsByName(name);
-        worldLocs.remember = !worldLocs.remember;
-        return worldLocs.remember;
+        if (worldLocs != null) {
+            worldLocs.remember = !worldLocs.remember;
+            return worldLocs.remember;
+        }
+        return false;
     }
     
     public void delay(String name, int delay) {
         WorldLocations worldLocs = getWorldLocationsByName(name);
-        worldLocs.delay = delay;
+        if (worldLocs != null) {
+            worldLocs.delay = delay;
+        }
+        return false;
     }
 
 
@@ -74,9 +80,14 @@ public class Teleporter {
     }
 
     private WorldLocations getWorldLocationsByName(String name) {
-        World world = locations.get(name).getWorld();
-        WorldLocations worldLocs = lastLocs.get(world);
-        return worldLocs;
+        if (locations.containsKey(name)) {
+            World world = locations.get(name).getWorld();
+            if (lastLocs.containsKey(world)) {
+                WorldLocations worldLocs = lastLocs.get(world);
+                return worldLocs;
+            }
+        }
+        return null;
     }
 
     public String toString() {
