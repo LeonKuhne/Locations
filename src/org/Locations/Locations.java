@@ -21,6 +21,10 @@ public class Locations extends JavaPlugin {
     private Teleporter tele;
     private Map<String, Command> shortcuts;
 
+    
+    // DEFAULT
+    //
+
     @Override
     public void onEnable() {
         shortcuts = new HashMap();
@@ -31,10 +35,6 @@ public class Locations extends JavaPlugin {
     @Override
     public void onDisable() {
         getLogger().info("stopping");
-    }
-
-    private void help(Player player, String message) {
-        player.sendMessage(ChatColor.GRAY + "[LOCS] " + ChatColor.RESET + message);
     }
 
     @Override
@@ -53,6 +53,22 @@ public class Locations extends JavaPlugin {
         return false;
     }
 
+
+    // CHAT
+    //
+    
+    private void error(Player player, String message) {
+        help(player, ChatColor.RED + message);
+    }
+
+    private void help(Player player, String message) {
+        player.sendMessage(ChatColor.GRAY + "[LOCS] " + ChatColor.RESET + message);
+    }
+
+
+    // LOCATION COMMAND CONTROLLER
+    //
+
     public void locsHandler(Player player, List<String> args) {
         if (args.size() == 0) {
             // list current locations
@@ -70,7 +86,7 @@ public class Locations extends JavaPlugin {
                         tele.set(name, player.getLocation());
                         help(player, "Added location " + ChatColor.GREEN + name);
                     } catch (Exception e) {
-                        help(player, "Failed to create command for " + ChatColor.RED + name);
+                        error(player, e.getMessage() + ChatColor.RED + name);
                     }
                     return;
                 case "delete":
@@ -79,7 +95,7 @@ public class Locations extends JavaPlugin {
                         tele.delete(name);
                         help(player, "Deleted location " + ChatColor.GREEN + name);
                     } catch (Exception e) {
-                        help(player, "Failed to delete " + ChatColor.RED + name);
+                        error(player, e.getMessage());
                     }
                     return;
                 case "remember":
@@ -87,18 +103,22 @@ public class Locations extends JavaPlugin {
                         boolean remember = tele.remember(name);
                         help(player, "Toggled remembering last location for world: " + ChatColor.GREEN + remember);
                     } catch (Exception e) {
-                        help(player, e.message + ChatColor.RED + remember);
+                        error(player, e.getMessage());
                     }
                     return;
                 case "delay":
-                    int delay;
-                    if (args.size() > 0) {
-                        delay = Integer.parseInt(args.get(0));
-                        tele.delay(name, delay);
-                    } else {
-                        delay = tele.delay(name);
+                    try {
+                        int delay;
+                        if (args.size() > 0) {
+                            delay = Integer.parseInt(args.get(0));
+                            tele.delay(name, delay);
+                        } else {
+                            delay = tele.delay(name);
+                        }
+                        help(player, "delay is set to " + ChatColor.GREEN + delay);
+                    } catch (Exception e) {
+                        error(player, e.getMessage());
                     }
-                    help(player, "delay is set to " + ChatColor.GREEN + delay);
                     return;
                 default:
                     help(player, "unknown command: " + ChatColor.RED + cmd);
@@ -115,10 +135,9 @@ public class Locations extends JavaPlugin {
         return;
     }
 
-
-    /**
-     * Register and Unregister new commands for shortcut teleports
-     */
+    
+    // REGISTER COMMANDS
+    //
 
     public boolean registerTeleport(String string) throws Exception {
         TeleportCommand tpCommand = new TeleportCommand(string, tele);

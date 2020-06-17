@@ -61,15 +61,14 @@ public class Teleporter {
         worldLocs.delay = delay;
     }
 
-
-    // UTIL
-    //
-    
     public int delay(String name) throws Exception {
         WorldLocations worldLocs = getWorldLocationsByName(name);
         return worldLocs.delay;
     }
 
+    // UTIL
+    //
+    
     public Set<String> getNames() {
         return locations.keySet();
     }
