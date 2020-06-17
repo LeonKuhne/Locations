@@ -76,7 +76,7 @@ public class Locations extends JavaPlugin {
             return;
         }
         
-        else if (args.size == 1 && args.get(0).equals("reload")) {
+        else if (args.size() == 1 && args.get(0).equals("reload")) {
             help(player, "Reloading worlds");
             tele.updateWorlds();
             return;
