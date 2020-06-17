@@ -35,11 +35,9 @@ public class Teleporter {
     //
     
     public void teleport(Player player, String name) {
-        player.sendMessage("teleporting player");
         World world = player.getWorld();
 
         if (lastLocs.containsKey(world)) {
-            player.sendMessage("found world " + world);
             WorldLocations worldLocs = lastLocs.get(world);
 
             // save world location
@@ -50,12 +48,16 @@ public class Teleporter {
 
                 // teleport after delay
                 Location before = player.getLocation().clone();
-                long tickDelay = worldLocs.delay * 100l;
-                player.sendMessage("waiting " + ChatColor.AQUA + tickDelay + ChatColor.RESET + " ticks");
+                long tickDelay = worldLocs.delay * 20l;
+
+                if (delay > 0) {
+                    player.sendMessage("Stand still for " + ChatColor.AQUA + tickDelay + ChatColor.RESET + " ticks");
+                }
+
                 scheduler.runTaskLater(plugin, () -> {
 
                     // check if moved
-                    if (before.equals(player.getLocation())) {
+                    if (delay == 0 || before.equals(player.getLocation())) {
                         
                         // teleport
                         player.teleport(locations.get(name));
