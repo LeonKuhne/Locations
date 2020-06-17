@@ -48,9 +48,10 @@ public class Teleporter {
 
                 // teleport after delay
 
+                int delay = worldLocs.delay;
                 long tickDelay = 0;
-                if (worldLocs.delay > 0) {
-                    tickDelay = worldLocs.delay * 20l;
+                if (delay > 0) {
+                    tickDelay = delay * 20l;
                     player.sendMessage("Stand still for " + ChatColor.AQUA + tickDelay + ChatColor.RESET + " ticks");
                 }
 
@@ -58,7 +59,7 @@ public class Teleporter {
                 Location before = player.getLocation().clone();
                 scheduler.runTaskLater(plugin, () -> {
                     // check if moved
-                    if (delay == 0 || before.equals(player.getLocation())) {
+                    if (tickDelay == 0 || before.equals(player.getLocation())) {
                         
                         // teleport
                         player.teleport(locations.get(name));
