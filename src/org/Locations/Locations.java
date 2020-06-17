@@ -28,7 +28,7 @@ public class Locations extends JavaPlugin {
     @Override
     public void onEnable() {
         shortcuts = new HashMap();
-        tele = new Teleporter();
+        tele = new Teleporter(this);
         getLogger().info("starting");
     }
     
@@ -101,7 +101,13 @@ public class Locations extends JavaPlugin {
                 case "remember":
                     try {
                         boolean remember = tele.remember(name);
-                        help(player, "Toggled remembering last location for world: " + ChatColor.GREEN + remember);
+                        if (args.size() > 0) {
+                            boolean remember = Boolean.parseBoolean(args.get(0));
+                            tele.remember(name, remember);
+                            help(player, "Set location remembering for " + ChatColor.GOLD + player.getWorld().getName() + ChatColor.RESET + " set to " + ChatColor.GREEN + remember);
+                        } else {
+                            help(player, ChatColor.GOLD + player.getWorld().getName() + ChatColor.RESET + " remembers last locations: " + ChatColor.AQUA + tele.remember(name));
+                        }
                     } catch (Exception e) {
                         error(player, e.getMessage());
                     }

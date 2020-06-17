@@ -6,16 +6,21 @@ import java.util.Set;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.scheduler.BukkitScheduler;
 
 /**
  * @author leee leee
  */
 public class Teleporter {
 
-    Map<String, Location> locations;
-    Map<World, WorldLocations> lastLocs;
+    private BukkitScheduler scheduler;
+    private Map<String, Location> locations;
+    private Map<World, WorldLocations> lastLocs;
 
-    public Teleporter() {
+
+    public Teleporter(Plugin plugin) {
+        this.plugin = plugin;
+        scheduler = plugin.getServer().getScheduler();
         locations = new HashMap();
         lastLocs = new HashMap();
     }
@@ -27,13 +32,18 @@ public class Teleporter {
     public void teleport(Player player, String name) {
         World world = player.getWorld();
 
-        // save world location
         if (lastLocs.containsKey(world)) {
             WorldLocations worldLocs = lastLocs.get(world);
+
+            // save world location
             if (worldLocs != null && worldLocs.remember){
                 worldLocs.save(player);
             }
+
+            // check for delay
+            scheduler.runTaskLater(plugin, () -> , )
         }
+        
 
         // teleport
         player.teleport(locations.get(name));
