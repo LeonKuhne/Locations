@@ -37,8 +37,6 @@ public class Locations extends JavaPlugin {
         if (cs instanceof Player) {
             Player player = (Player) cs;
 
-            System.out.println("um, hello?");
-                
             // teleport shortcut
             if (tele.getNames().contains(string)) {
                 tele.teleport(player, string);
@@ -63,6 +61,7 @@ public class Locations extends JavaPlugin {
             switch(cmd) {
                 case "set":
                     tele.set(name, player.getLocation());
+                    registerCommand(name);
                     help(player, "Set spawn for " + ChatColor.GREEN + name);
                     return;
                 case "delete":
@@ -94,5 +93,15 @@ public class Locations extends JavaPlugin {
         help(player, "delete [name]");
         help(player, "remember [name]");
         help(player, "delay [name] [sec]");
+    }
+
+    /**
+     * Register additional commands, used by shortcut teleports
+     */
+    public void registerCommand(String command) {
+        Field bukkitCmdMap = getServer().getClass().getDeclaredField("commandMap");
+        bukkitCmdMap.setAccessible(true);
+        CommandMap cmdMap = (CommandMap) bukkitCmdMap.get(getServer());
+        cmdMap.register(command, new DynamicCommand(command, this));
     }
 }
