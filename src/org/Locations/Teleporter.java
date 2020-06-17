@@ -8,6 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.plugin.Plugin;
 
 /**
  * @author leee leee
