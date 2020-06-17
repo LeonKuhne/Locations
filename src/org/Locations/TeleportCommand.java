@@ -24,7 +24,6 @@ public class TeleportCommand extends Command {
             Player player = (Player) cs;
 
             String name = string.toLowerCase();
-            player.sendMessage("Teleported to " + ChatColor.GREEN + name);
             tele.teleport(player, name);
             return true;
         }

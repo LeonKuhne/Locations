@@ -46,6 +46,8 @@ public class Teleporter {
 
                  // wait for delay
                 Location before = player.getLocation().clone();
+                player.sendMessage("waiting " + ChatColor.AQUA + delay + ChatColor.RESET + " seconds");
+
                 scheduler.runTaskLater(plugin, () -> {
 
                     // check if moved
@@ -53,10 +55,11 @@ public class Teleporter {
                         
                         // teleport
                         player.teleport(locations.get(name));
+                        player.sendMessage(ChatColor.GREEN + "teleporting to " + name);
                     } else {
-                        player.sendMessage(ChatColor.RED + "tp failed, you moved!");
+                        player.sendMessage(ChatColor.RED + "you moved! failed tp");
                     }
-                }, worldLocs.delay * 1000l);
+                }, worldLocs.delay * 100l);
             }
         }
     }
