@@ -24,14 +24,14 @@ public class Teleporter {
     //
     
     public void teleport(Player player, String name) {
-        // remember current world position
+        // save world location
         WorldLocations worldLocs = lastLocs.get(player.getWorld());
         if (worldLocs.remember){
             worldLocs.save(player);
         }
 
         // teleport
-        locations.get(name).teleport(player);
+        player.teleport(locations.get(name));
     }
 
     public void set(String name, Location location) {
