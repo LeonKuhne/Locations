@@ -6,7 +6,7 @@ import org.bukkit.command.PluginCommand;
 /**
  * @author leee leee
  */
-public class TeleportCommand extends PluginCommand {
+public class TeleportCommand implements PluginCommand {
     
     public TeleportCommand(String name, Plugin plugin) {
         super(name, plugin);
