@@ -57,7 +57,7 @@ public class Locations extends JavaPlugin {
             switch(cmd) {
                 case "set":
                     tele.set(name, player.getLocation());
-                    registerCommand(name);
+                    registerTeleport(name);
                     help(player, "Set spawn for " + ChatColor.GREEN + name);
                     return;
                 case "delete":
