@@ -96,7 +96,7 @@ public class Locations extends JavaPlugin {
         }
 
         // show all current locations
-        help(player, tele);
+        help(player, tele.toString());
     }
 
     /**
