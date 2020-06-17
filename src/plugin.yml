@@ -1,0 +1,20 @@
+name: Locations
+version: 0.1
+description: 
+author: leee leee
+website: denmc.online
+
+main: hvh.org.Locations
+
+commands:
+    locations:
+        description: Leeeleee's Locations
+        permission: spigotplugin.locs
+        usage: /<command>
+    locs:
+        description: Leeeleee's Locations
+        permission: spigotplugin.locs
+        usage: /<command>
+
+
+permissions: {}
