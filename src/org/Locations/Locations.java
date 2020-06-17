@@ -109,9 +109,10 @@ public class Locations extends JavaPlugin {
                         if (args.size() > 0) {
                             remember = Boolean.parseBoolean(args.get(0));
                             tele.remember(name, remember);
+                        }
                         
-                            // get
-                        } else {
+                        // get
+                        else {
                             remember = tele.remember(name);
                         }
 
@@ -130,9 +131,10 @@ public class Locations extends JavaPlugin {
                         if (args.size() > 0) {
                             delay = Integer.parseInt(args.get(0));
                             tele.delay(name, delay);
+                        }
 
                         // get
-                        } else {
+                        else {
                             delay = tele.delay(name);
                         }
 
@@ -151,7 +153,7 @@ public class Locations extends JavaPlugin {
         help(player, "available commands:");
         help(player, ChatColor.GREEN + "set [name]");
         help(player, ChatColor.GREEN + "delete [name]");
-        help(player, ChatColor.GREEN + "remember [name]");
+        help(player, ChatColor.GREEN + "remember [name] [true/false]");
         help(player, ChatColor.GREEN + "delay [name] [sec]");
         help(player, ChatColor.GREEN + "(nothing)");
         return;
