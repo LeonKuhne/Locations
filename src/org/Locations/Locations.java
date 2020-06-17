@@ -92,7 +92,8 @@ public class Locations extends JavaPlugin {
             help(player, "remember [name]");
             help(player, "delay [name] [sec]");
             help(player, "(nothing)");
- 
+
+            return;
         }
 
         // show all current locations
