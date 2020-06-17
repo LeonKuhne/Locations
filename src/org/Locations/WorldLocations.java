@@ -25,7 +25,9 @@ public class WorldLocations extends JavaPlugin {
     // ACTIONS
     //
 
-    /**/ save players last location    
+    /**
+     * save players last location    
+     */
     public void save(Player player) {
         Location loc = player.getLocation().clone();
 

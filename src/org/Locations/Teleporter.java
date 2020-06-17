@@ -39,7 +39,9 @@ public class Teleporter extends JavaPlugin {
         locations.remove(name);
     }
 
-    /**/ toggle wether to remember the players location in that world
+    /**
+     * toggle wether to remember the players location in that world
+     */
     public boolean remember(String name) {
         WorldLocations worldLocs = getWorldLocationsByName(name);
         worldLocs.remember = !worldLocs.remember;
