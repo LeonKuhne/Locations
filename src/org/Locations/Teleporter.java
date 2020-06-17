@@ -55,10 +55,10 @@ public class Teleporter {
                 }
 
                 // teleport after delay
-                Location before = player.getLocation().clone();
+                Location before = player.getLocation().getBlock().getLocation().clone();
                 scheduler.runTaskLater(plugin, () -> {
                     // check if moved
-                    if (tickDelay == 0 || before.equals(player.getLocation())) {
+                    if (tickDelay == 0 || before.equals(player.getLocation().getBlock().getLocation())) {
                         
                         // teleport
                         player.teleport(locations.get(name));
