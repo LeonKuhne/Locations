@@ -11,10 +11,10 @@ git push
 
 # setup directories to look for
 script_home=$(pwd)
-script_build="$hvh_home/build"
-script_dist="$hvh_home/dist"
-script_src="$hvh_home/src"
-script_lib="$hvh_home/lib"
+script_build="$script_home/build"
+script_dist="$script_home/dist"
+script_src="$script_home/src"
+script_lib="$script_home/lib"
 
 # compile
 #
@@ -31,7 +31,7 @@ echo -en "\e[32m"
 jar -cf "$script_dist/Locations.jar" plugin.yml
 
 # create .class files
-javac -cp $script_lib/*.jar $src_files -d $hvh_build
+javac -cp $script_lib/*.jar $src_files -d $script_build
 
 
 # compress
