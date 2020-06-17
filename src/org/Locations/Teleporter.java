@@ -51,7 +51,7 @@ public class Teleporter {
                 int delay = worldLocs.delay;
                 long tickDelay = delay * 20l;
                 if (delay > 0) {
-                    player.sendMessage("Stand still for " + ChatColor.AQUA + tickDelay + ChatColor.RESET + " ticks");
+                    player.sendMessage("Stand still for " + ChatColor.AQUA + delay + ChatColor.RESET + " seconds");
                 }
 
                 // teleport after delay
