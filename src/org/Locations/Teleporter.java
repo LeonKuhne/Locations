@@ -50,13 +50,13 @@ public class Teleporter {
     /**
      * toggle wether to remember the players location in that world
      */
-    public boolean remember(String name) {
+    public boolean remember(String name) throws Exception {
         WorldLocations worldLocs = getWorldLocationsByName(name);
         worldLocs.remember = !worldLocs.remember;
         return worldLocs.remember;
     }
     
-    public void delay(String name, int delay) {
+    public void delay(String name, int delay) throws Exception {
         WorldLocations worldLocs = getWorldLocationsByName(name);
         worldLocs.delay = delay;
     }
