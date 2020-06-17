@@ -37,13 +37,13 @@ public class Locations extends JavaPlugin {
         if (cs instanceof Player) {
             Player player = (Player) cs;
                 
-            // check if teleport requested
+            // teleport shortcut
             if (tele.getNames().contains(string)) {
                 tele.teleport(player, string);
                 return true;
             }
             
-            // command is locs or locations && player has permissions
+            // admin commands
             else if (player.isOp() && (string.equals("locs") || string.equals("locations"))) {
                 locsHandler(player, new ArrayList(Arrays.asList(args)));
                 return true;

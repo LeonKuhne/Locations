@@ -60,7 +60,7 @@ public class Teleporter {
     // UTIL
     //
     
-    public void delay(String name) {
+    public int delay(String name) {
         return delay;
     }
 
