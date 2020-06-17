@@ -49,7 +49,7 @@ public class Teleporter {
                 }
 
                 // if moving don't teleport
-                if (player.getVelocity().equals(new Vector()) {
+                if (player.getVelocity().equals(new Vector())) {
                     player.sendMessage("You're moving to fast, can't teleport");
                     return;
                 }
