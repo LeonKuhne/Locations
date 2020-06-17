@@ -20,7 +20,8 @@ public class TeleportCommand extends Command {
 
     @Override
     public boolean execute(CommandSender cs, String string, String[] args) {
-        if (cs instanceof Player) {
+        System.out.println("registered: " + isRegistered());
+        if (isRegistered() && cs instanceof Player) {
             Player player = (Player) cs;
 
             String name = string.toLowerCase();
