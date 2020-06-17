@@ -78,7 +78,6 @@ public class Teleporter {
     }
     public boolean remember(String name) throws Exception {
         WorldLocations worldLocs = getWorldLocationsByName(name);
-        worldLocs.remember = !worldLocs.remember;
         return worldLocs.remember;
     }
     
