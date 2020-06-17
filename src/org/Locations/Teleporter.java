@@ -85,7 +85,7 @@ public class Teleporter {
 
             // create world details
             } else {
-                worldLocs = new WorldLocation();
+                worldLocs = new WorldLocations();
                 lastLocs.put(world, worldLocs);
             }
             
