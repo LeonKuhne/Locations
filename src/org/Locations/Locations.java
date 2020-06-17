@@ -74,7 +74,8 @@ public class Locations extends JavaPlugin {
                     }
                     return;
                 case "delete":
-                    try (unregisterTeleport(name)) {
+                    try {
+                        unregisterTeleport(name);
                         tele.delete(name);
                         help(player, "Deleted location " + ChatColor.GREEN + name);
                     } catch (Exception e) {
