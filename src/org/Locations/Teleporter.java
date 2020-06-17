@@ -25,9 +25,12 @@ public class Teleporter {
     
     public void teleport(Player player, String name) {
         // save world location
-        WorldLocations worldLocs = lastLocs.get(player.getWorld());
-        if (worldLocs.remember){
-            worldLocs.save(player);
+        if (lastLocs.containsKey(player.getWorld())) {
+            WorldLocations worldLocs = lastLocs.get(player.getWorld());
+            
+            if (worldLocs.remember){
+                worldLocs.save(player);
+            }
         }
 
         // teleport
