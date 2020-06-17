@@ -26,7 +26,7 @@ public class Locations extends JavaPlugin {
     }
 
     private void help(Player player, String message) {
-        player.sendMessage(ChatColor.GREY+ "[LOCS] " + ChatColor.RESET + message);
+        player.sendMessage(ChatColor.GRAY + "[LOCS] " + ChatColor.RESET + message);
     }
 
     @Override
