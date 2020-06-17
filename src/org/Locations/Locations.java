@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.command.CommandMap;
-import org.bukkit.command.PluginCommand;
 
 /**
  * @author leee leee
@@ -105,6 +104,6 @@ public class Locations extends JavaPlugin {
         Field bukkitCmdMap = getServer().getClass().getDeclaredField("commandMap");
         bukkitCmdMap.setAccessible(true);
         CommandMap cmdMap = (CommandMap) bukkitCmdMap.get(getServer());
-        cmdMap.register(command, new PluginCommand(command, this));
+        cmdMap.register(command, new TeleportCommand(command, this));
     }
 }
