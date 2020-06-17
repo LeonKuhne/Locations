@@ -36,6 +36,8 @@ public class Locations extends JavaPlugin {
         // is player
         if (cs instanceof Player) {
             Player player = (Player) cs;
+
+            System.out.println("um, hello?");
                 
             // teleport shortcut
             if (tele.getNames().contains(string)) {
