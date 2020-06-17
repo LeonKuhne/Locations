@@ -19,6 +19,7 @@ public class TeleportCommand extends Command {
 
     @Override
     public boolean execute(CommandSender cs, String string, String[] args) {
+        System.out.println("im getting it too!");
         if (cs instanceof Player) {
             Player player = (Player) cs;
             tele.teleport(player, string.toLowerCase());
