@@ -72,6 +72,10 @@ public class Teleporter {
     /**
      * toggle wether to remember the players location in that world
      */
+    public void remember(String name, boolean remember) throws Exception {
+        WorldLocations worldLocs = getWorldLocationsByName(name);
+        worldLocs.remember = remember;
+    }
     public boolean remember(String name) throws Exception {
         WorldLocations worldLocs = getWorldLocationsByName(name);
         worldLocs.remember = !worldLocs.remember;
