@@ -49,7 +49,8 @@ public class Teleporter {
                 }
 
                 // if moving don't teleport
-                player.sendMessage("vel: " + player.getVelocity().distance(new Vector()));
+                Vector vel = player.getVelocity();
+                player.sendMessage("vel: (x:" + vel.getX() + ", y:" +vel.getY()+", z:"+vel.getZ()+")");
                 if (player.getVelocity().distance(new Vector()) != 0) {
                     player.sendMessage("You're moving to fast, can't teleport");
                     return;
