@@ -40,14 +40,20 @@ public class Teleporter {
         if (lastLocs.containsKey(world)) {
             WorldLocations worldLocs = lastLocs.get(world);
 
-            // save world location
             if (worldLocs != null) {
+
+                // save world location
                 if (worldLocs.remember){
                     worldLocs.save(player);
                 }
 
-                // teleport after delay
+                // if moving don't teleport
+                if (player.getVelocity().equals(new Vector()) {
+                    player.sendMessage("You're moving to fast, can't teleport");
+                    return;
+                }
 
+                // teleport after delay
                 int delay = worldLocs.delay;
                 long tickDelay = delay * 20l;
                 if (delay > 0) {
