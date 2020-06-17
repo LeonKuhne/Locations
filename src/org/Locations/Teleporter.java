@@ -3,11 +3,13 @@ package org.Locations;
 import java.util.Map;
 import java.util.HashMap;
 import org.bukkit.entity.Player;
+import org.bukkit.Location;
+import org.bukkit.World;
 
 /**
  * @author leee leee
  */
-public class Teleporter extends JavaPlugin {
+public class Teleporter {
 
     Map<String, Location> locations;
     Map<World, WorldLocations> lastLocs;

@@ -3,11 +3,12 @@ package org.Locations;
 import java.util.Map;
 import java.util.HashMap;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 /**
  * @author leee leee
  */
-public class WorldLocations extends JavaPlugin {
+public class WorldLocations {
     
     private Map<Player, Set<Location>> lastLocations;
 
