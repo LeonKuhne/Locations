@@ -6,6 +6,7 @@ import java.util.Set;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitScheduler;
 
 /**
@@ -36,17 +37,26 @@ public class Teleporter {
             WorldLocations worldLocs = lastLocs.get(world);
 
             // save world location
-            if (worldLocs != null && worldLocs.remember){
-                worldLocs.save(player);
+            if (worldLocs != null) {
+                if (worldLocs.remember){
+                    worldLocs.save(player);
+                }
+
+                 // wait for delay
+                Location before = player.getLocation().clone();
+                scheduler.runTaskLater(plugin, () -> {
+
+                    // check if moved
+                    if (before.equals(player.getLocation())) {
+                        
+                        // teleport
+                        player.teleport(locations.get(name));
+                    } else {
+                        player.sendMessage(ChatColor.RED + "tp failed, you moved!")
+                    }
+                }, worldLocs.delay);
             }
-
-            // check for delay
-            scheduler.runTaskLater(plugin, () -> , )
         }
-        
-
-        // teleport
-        player.teleport(locations.get(name));
     }
 
     public void set(String name, Location location) {
