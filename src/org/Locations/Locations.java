@@ -137,6 +137,7 @@ public class Locations extends JavaPlugin {
             // unregister old command
             Command tpCommand = shortcuts.get(command);
             tpCommand.unregister(cmdMap);
+            shortcuts.remove(command);
 
             return true;
         } catch (Exception e) {
