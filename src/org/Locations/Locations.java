@@ -136,7 +136,7 @@ public class Locations extends JavaPlugin {
             CommandMap cmdMap = (CommandMap) bukkitCmdMap.get(getServer());
 
             // unregister old command
-            TeleportCommand tpCommand = shortcuts.get(command);
+            Command tpCommand = shortcuts.get(command);
             tpCommand.unregister(cmdMap);
 
             return true;
