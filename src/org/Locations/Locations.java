@@ -55,7 +55,9 @@ public class Locations extends JavaPlugin {
 
     public void locsHandler(Player player, List<String> args) {
         if (args.size() > 1) {
-            switch(args.remove(0)) {
+
+            String cmd = args.remove(0);
+            switch(cmd) {
                 case "set":
                     return;
                 case "delete":
@@ -78,5 +80,4 @@ public class Locations extends JavaPlugin {
         help(player, "remember [name]");
         help(player, "delay [sec]");
     }
-    
 }
