@@ -139,13 +139,13 @@ public class Locations extends JavaPlugin {
     // REGISTER COMMANDS
     //
 
-    public boolean registerTeleport(String string) throws Exception {
+    public void registerTeleport(String string) throws Exception {
         TeleportCommand tpCommand = new TeleportCommand(string, tele);
         getCommandMap().register(string, tpCommand);
         shortcuts.put(string, tpCommand);
     }
 
-    public boolean unregisterTeleport(String string) throws Exception {
+    public void unregisterTeleport(String string) throws Exception {
         Command tpCommand = shortcuts.remove(string);
         tpCommand.unregister(getCommandMap());
     }
