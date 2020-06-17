@@ -63,7 +63,6 @@ public class Teleporter {
         if (worldLocs != null) {
             worldLocs.delay = delay;
         }
-        return false;
     }
 
 
