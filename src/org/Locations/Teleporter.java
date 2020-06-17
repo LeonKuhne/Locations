@@ -52,7 +52,7 @@ public class Teleporter {
                         // teleport
                         player.teleport(locations.get(name));
                     } else {
-                        player.sendMessage(ChatColor.RED + "tp failed, you moved!")
+                        player.sendMessage(ChatColor.RED + "tp failed, you moved!");
                     }
                 }, worldLocs.delay);
             }
