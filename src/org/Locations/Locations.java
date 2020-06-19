@@ -171,8 +171,8 @@ public class Locations extends JavaPlugin {
         help(player, ChatColor.GREEN + "----- Locations Help ----");
         for (Map.Entry<String, String> entry : helpDesc.entrySet()) {
             String helpCmd = entry.getKey();
-            helpCmd += new String(new char[HELP_COMMAND_WIDTH-helpCmd.length()]).replace("\0", " "); // add padding
             String helpDesc = entry.getValue();
+            helpDesc += new String(new char[HELP_COMMAND_WIDTH-helpCmd.length()]).replace("\0", " "); // add padding
 
             help(player, ChatColor.AQUA + helpDesc + ChatColor.GREEN + helpCmd);
         }
