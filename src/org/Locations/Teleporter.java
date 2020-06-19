@@ -98,10 +98,12 @@ public class Teleporter {
         }
     }
 
+    // assumes player is already in the desired world
     public void back(Player player) {
-        WorldLocations worldLocs = lastLocs.get(player.getWorld());
+        World destiWorld = player.getWorld();
+        WorldLocations worldLocs = lastLocs.get(world);
         if (worldLocs != null) {
-            worldLocs.teleport(player);
+            worldLocs.teleport(player, world);
         }
     }
 
