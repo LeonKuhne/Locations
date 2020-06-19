@@ -68,10 +68,21 @@ public class Teleporter {
                 scheduler.runTaskLater(plugin, () -> {
                     // check if moved
                     if (tickDelay == 0 || before.equals(player.getLocation().getBlock().getLocation())) {
+                        // determine destination
+                        Location destination = locations.get(name);
                         
-                        // teleport
-                        player.teleport(locations.get(name));
-                        player.sendMessage(ChatColor.GREEN + "teleporting to " + name);
+                        // if previous location exists, and world set to remember
+                        Location prevLoc = worldLocs.getLastLoc(Player);
+                        if (prevLoc != null && worldLocs.remember) {
+                            player.sendMessage(ChatColor.GREEN + "Teleporting to world " + prevLoc.getWorld().getName());
+                            worldLocs.teleport(player);
+                        }
+
+                        // otherwise, use locations
+                        else {
+                            player.sendMessage(ChatColor.GREEN + "Teleporting to /" + name);
+                            player.teleport(destination);
+                        }
                     } else {
                         player.sendMessage(ChatColor.RED + "you moved! failed tp");
                     }

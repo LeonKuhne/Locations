@@ -46,19 +46,27 @@ public class WorldLocations {
     }
 
     public void teleport(Player player) {
-        Map<World, Location> worlds = lastLocations.get(player);
-        if (worlds != null) {
-            Location loc = worlds.get(player.getWorld());
-            if (loc != null) {
-                player.teleport(loc);
-                player.sendMessage("returning you to your last location in " + ChatColor.GREEN + player.getWorld().getName());
-            }
+        Location loc = getLastLoc(player);
+        if (loc != null) {
+            player.teleport(loc);
+            player.sendMessage("returning you to your last location in " + ChatColor.GREEN + player.getWorld().getName());
         }
     }
 
 
     // UTIL
     //
+    
+    public Location getLastLoc(Player player) {
+        Map<World, Location> worlds = lastLocations.get(player);
+        if (worlds != null) {
+            
+            World world = player.getWorld();
+            if (worlds.containsKey(world)) {
+                return worlds.get(world);
+            }
+        }
+    }
 
     public void load() {
         remember = false;
