@@ -134,7 +134,7 @@ public class Locations extends JavaPlugin {
                             remember = tele.remember(name);
                         }
 
-                        help(player, "Location remembering for " + ChatColor.GOLD + player.getWorld().getName() + ChatColor.RESET + " is set to " + ChatColor.GREEN + remember);
+                        help(player, "Location remembering for " + ChatColor.GOLD + name + ChatColor.RESET + " is set to " + ChatColor.GREEN + remember);
 
                     } catch (Exception e) {
                         error(player, e.getMessage());
