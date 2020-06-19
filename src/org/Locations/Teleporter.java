@@ -86,7 +86,7 @@ public class Teleporter {
         // if previous location exists, and world set to remember
         if (prevLoc != null && destiWorldLocs.remember) {
             player.sendMessage(ChatColor.GREEN + "Teleporting to world " + destination.getWorld().getName());
-            destiWorldLocs.teleport(player);
+            player.teleport(prevLoc);
         }
 
         // otherwise, use locations
