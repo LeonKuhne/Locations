@@ -63,8 +63,6 @@ public class WorldLocations {
             if (worlds.containsKey(world)) {
                 return worlds.get(world);
             }
-        } else {
-            player.sendMessage("error: ")
         }
         return null;
     }
