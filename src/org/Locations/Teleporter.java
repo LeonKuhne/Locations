@@ -91,7 +91,7 @@ public class Teleporter {
 
         // otherwise, use locations
         else {
-            player.sendMessage(ChatColor.GREEN + "Teleporting to /" + name);
+            player.sendMessage(ChatColor.GREEN + "Teleporting to /" + locationName);
             player.teleport(destination);
         }
     }
