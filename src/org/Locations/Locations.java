@@ -39,8 +39,6 @@ public class Locations extends JavaPlugin {
     public void onEnable() {
         tele = new Teleporter(this);
         shortcuts = new HashMap();
-        helpDesc
-
         getLogger().info("starting");
     }
     
