@@ -18,7 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class Locations extends JavaPlugin {
    
-    private final HELP_COMMAND_WIDTH = 80; // character width spacing for the help command menu
+    private final int HELP_COMMAND_WIDTH = 80; // character width spacing for the help command menu
     private final HashMap<String, String> helpDesc = new HashMap() {{
         put("/locs", "list available locations");
         put("/locs set/add [name]" + ChatColor.AQUA + "creates a new location");
