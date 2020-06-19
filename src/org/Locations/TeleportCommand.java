@@ -24,7 +24,11 @@ public class TeleportCommand extends Command {
             Player player = (Player) cs;
 
             String name = string.toLowerCase();
-            tele.teleport(player, name);
+            try {
+                tele.teleport(player, name);
+            } catch (Exception e) {
+                player.sendMessage(e.getMessage());
+            }
             return true;
         }
 

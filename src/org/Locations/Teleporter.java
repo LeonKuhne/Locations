@@ -36,7 +36,7 @@ public class Teleporter {
     // ACTIONS
     //
     
-    public void teleport(Player player, String name) {
+    public void teleport(Player player, String name) throws Exception {
         World world = player.getWorld();
 
         if (lastLocs.containsKey(world)) {
@@ -73,7 +73,9 @@ public class Teleporter {
                         
                         // if previous location exists, and world set to remember
                         Location prevLoc = worldLocs.getLastLoc(player);
-                        if (prevLoc != null && worldLocs.remember) {
+                        WorldLocations destiWorldLocs = getWorldLocations(prevLoc.getWorld());
+
+                        if (prevLoc != null && destiWorldLocs.remember) {
                             player.sendMessage(ChatColor.GREEN + "Teleporting to world " + prevLoc.getWorld().getName());
                             worldLocs.teleport(player);
                         }
