@@ -82,7 +82,9 @@ public class Teleporter {
 
     public void back(Player player) {
         WorldLocations worldLocs = lastLocs.get(player.getWorld());
-        worldLocs.teleport(player);
+        if (worldLocs != null) {
+            worldLocs.teleport(player);
+        }
     }
 
     public void set(String name, Location location) {
@@ -97,22 +99,19 @@ public class Teleporter {
      * toggle wether to remember the players location in that world
      */
     public void remember(String name, boolean remember) throws Exception {
-        WorldLocations worldLocs = getWorldLocationsByName(name);
-        worldLocs.remember = remember;
+        getWL().remember = remember;
     }
+    
     public boolean remember(String name) throws Exception {
-        WorldLocations worldLocs = getWorldLocationsByName(name);
-        return worldLocs.remember;
+        return getWL().remember;
     }
     
     public void delay(String name, int delay) throws Exception {
-        WorldLocations worldLocs = getWorldLocationsByName(name);
-        worldLocs.delay = delay;
+        getWL().delay = delay;
     }
 
     public int delay(String name) throws Exception {
-        WorldLocations worldLocs = getWorldLocationsByName(name);
-        return worldLocs.delay;
+        return getWL().delay;
     }
 
     // UTIL
@@ -122,25 +121,46 @@ public class Teleporter {
         return locations.keySet();
     }
 
-    private WorldLocations getWorldLocationsByName(String name) throws Exception {
+    private WorldLocations getWL(String name) throws Exception {
+        WorldLocations worldLocs;
+        try {
+            worldLocs = getWorldLocations(name);
+        } catch (Exception e) {
+            worldLocs = getWorldLocationsByWorldName(name);
+        }
+        return worldLocs;
+    }
+
+    private WorldLocations getWorldLocationsByWorldName(String worldName) throws Exception {
+        World world = plugin.getServer().getWorld(worldName);
+        if (world != null)  {
+            return getWorldLocations(world);
+        }
+        throw new Exception("World name not identified");
+    }
+
+    private WorldLocations getWorldLocations(String name) throws Exception {
         if (locations.containsKey(name)) {
             World world = locations.get(name).getWorld();
-            WorldLocations worldLocs;
+            return getWorldLocations(world);
+        }
+        throw new Exception("Location not defined yet");
+    }
 
-            // search for world details, if they exist
-            if (lastLocs.containsKey(world)) {
-                worldLocs = lastLocs.get(world);
+    private WorldLocations getWorldLocations(World world) {
+        WorldLocations worldLocs;
 
-            // create world details
-            } else {
-                worldLocs = new WorldLocations();
-                lastLocs.put(world, worldLocs);
-            }
-            
+        // search for world details, if they exist
+        if (lastLocs.containsKey(world)) {
+            worldLocs = lastLocs.get(world);
             return worldLocs;
         }
-
-        throw new Exception("Location not defined yet");
+        
+        // create world details, or...
+        // throw new Exception("World not loaded, try /locs reload");
+        worldLocs = new WorldLocations();
+        lastLocs.put(world, worldLocs);
+        return worldLocs;
     }
 
     public String toString() {

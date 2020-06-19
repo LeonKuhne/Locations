@@ -170,7 +170,7 @@ public class Locations extends JavaPlugin {
         // help
         help(player, ChatColor.GREEN + "----- Locations Help ----");
         for (Map.Entry<String, String> entry : helpDesc.entrySet()) {
-            help(player, ChatColor.AQUA + entry.getValue() + ": " + ChatColor.GREEN + entry.getKey());
+            help(player, ChatColor.GREEN + entry.getKey() + ": " + ChatColor.AQUA + entry.getValue());
         }
     }
 
