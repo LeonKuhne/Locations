@@ -45,8 +45,8 @@ public class WorldLocations {
         }
     }
 
-    public void teleport(Player player) {
-        Location loc = getLastLoc(player);
+    public void teleport(Player player, World world) {
+        Location loc = getLastLoc(player, world);
         if (loc != null && !player.getWorld().equals(loc.getWorld())) {
             player.teleport(loc);
             player.sendMessage("returning you to your last location in " + ChatColor.GREEN + player.getWorld().getName());
