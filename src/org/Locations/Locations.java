@@ -17,6 +17,16 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @author leee leee
  */
 public class Locations extends JavaPlugin {
+   
+    private final HELP_COMMAND_WIDTH = 80; // character width spacing for the help command menu
+    private final HashMap<String, String> helpDesc = new HashMap() {{
+        put("/locs", "list available locations");
+        put("/locs set/add [name]" + ChatColor.AQUA + "creates a new location");
+        put("/locs delete [name]", "delete a location");
+        put("/locs remember [world/name] [true/false]", "remember ");
+        put("/locs delay [world/name] [sec]", "prevents combat teleporting");
+        put("/locs reload", "reload the currently existing worlds");
+    }}
 
     private Teleporter tele;
     private Map<String, Command> shortcuts;
@@ -159,13 +169,13 @@ public class Locations extends JavaPlugin {
 
         // help
         help(player, ChatColor.GREEN + "----- Locations Help ----");
-        help(player, ChatColor.GREEN + "/locs " + ChatColor.AQUA + "list available locations");
-        help(player, ChatColor.GREEN + "/locs set/add [name] " + ChatColor.AQUA + "creates a new location");
-        help(player, ChatColor.GREEN + "/locs delete [name] " + ChatColor.AQUA + "delete a location");
-        help(player, ChatColor.GREEN + "/locs remember [world/name] [true/false] " + ChatColor.AQUA + "remember ");
-        help(player, ChatColor.GREEN + "/locs delay [world/name] [sec] " + ChatColor.AQUA + "prevents combat teleporting");
-        help(player, ChatColor.GREEN + "/locs reload " + ChatColor.AQUA + "reload the currently existing worlds");
-        return;
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            String helpCmd = entry.getKey();
+            helpCmd += (" "*(HELP_COMMAND_WIDTH-helpCmd.length)); // add padding
+            String helpDesc = entry.getValue();
+
+            help(player, ChatColor.AQUA + helpDesc + ChatColor.GREEN + helpCmd);
+        }
     }
 
     
