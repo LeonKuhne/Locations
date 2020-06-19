@@ -59,8 +59,6 @@ public class WorldLocations {
     
     public Location getLastLoc(Player player, World world) {
         Map<World, Location> worlds = lastLocations.get(player);
-        player.sendMessage("saved worlds: " + worlds);
-
         if (worlds != null) {
             if (worlds.containsKey(world)) {
                 return worlds.get(world);
