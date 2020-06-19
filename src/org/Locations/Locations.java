@@ -19,7 +19,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Locations extends JavaPlugin {
    
     private final int HELP_COMMAND_WIDTH = 80; // character width spacing for the help command menu
-    private HashMap<String, String> helpDesc;
+    private HashMap<String, String> helpDesc = new HashMap() {{
+        put("/locs", "list available locations");
+        put("/locs set/add [name]", "creates a new location");
+        put("/locs delete [name]", "delete a location");
+        put("/locs remember [world/name] [true/false]", "remember ");
+        put("/locs delay [world/name] [sec]", "prevents combat teleporting");
+        put("/locs reload", "reload the currently existing worlds");
+    }};
 
     private Teleporter tele;
     private Map<String, Command> shortcuts;
@@ -32,14 +39,7 @@ public class Locations extends JavaPlugin {
     public void onEnable() {
         tele = new Teleporter(this);
         shortcuts = new HashMap();
-        helpDesc = new HashMap() {{
-            put("/locs", "list available locations");
-            put("/locs set/add [name]", "creates a new location");
-            put("/locs delete [name]", "delete a location");
-            put("/locs remember [world/name] [true/false]", "remember ");
-            put("/locs delay [world/name] [sec]", "prevents combat teleporting");
-            put("/locs reload", "reload the currently existing worlds");
-        }};
+        helpDesc
 
         getLogger().info("starting");
     }
