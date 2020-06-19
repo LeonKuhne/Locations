@@ -80,6 +80,11 @@ public class Teleporter {
         }
     }
 
+    public void back(Player player) {
+        WorldLocations worldLocs = lastLocs.get(player.getWorld());
+        worldLocs.teleport(player);
+    }
+
     public void set(String name, Location location) {
         locations.put(name, location);
     }

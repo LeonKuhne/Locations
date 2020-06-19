@@ -18,17 +18,16 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class Locations extends JavaPlugin {
    
-    private final int HELP_COMMAND_PADDING = 10; // max number of '\t' to add
-    private HashMap<String, String> helpDesc = new HashMap() {{
+    private final HashMap<String, String> helpDesc = new HashMap() {{
         put("/locs", "list available locations");
         put("/locs set/add [name]", "creates a new location");
         put("/locs delete [name]", "delete a location");
-        put("/locs remember [world/name] [true/false]", "remember ");
-        put("/locs delay [world/name] [sec]", "prevents combat teleporting");
+        put("/locs remember [world/name] [true/false]", "remember last location");
+        put("/locs delay [world/name] [sec]", "prevents teleporting during combat");
         put("/locs reload", "reload the currently existing worlds");
     }};
-
-    private Teleporter tele;
+    
+    public static Teleporter tele;
     private Map<String, Command> shortcuts;
 
     
@@ -39,6 +38,7 @@ public class Locations extends JavaPlugin {
     public void onEnable() {
         tele = new Teleporter(this);
         shortcuts = new HashMap();
+        getServer.getPluginManager().registerEvents(new WorldSwitchListener(), this)
         getLogger().info("starting");
     }
     
@@ -170,7 +170,7 @@ public class Locations extends JavaPlugin {
         // help
         help(player, ChatColor.GREEN + "----- Locations Help ----");
         for (Map.Entry<String, String> entry : helpDesc.entrySet()) {
-            help(player, ChatColor.AQUA + entry.getValue() + ChatColor.GREEN + entry.getKey());
+            help(player, ChatColor.AQUA + entry.getValue() + ": " + ChatColor.GREEN + entry.getKey());
         }
     }
 
