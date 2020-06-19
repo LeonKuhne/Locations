@@ -158,13 +158,13 @@ public class Locations extends JavaPlugin {
         }
 
         // help
-        help(player, "available commands:");
-        help(player, ChatColor.GREEN + "set/add [name]");
-        help(player, ChatColor.GREEN + "delete [name]");
-        help(player, ChatColor.GREEN + "remember [name] [true/false]");
-        help(player, ChatColor.GREEN + "delay [name] [sec]");
-        help(player, ChatColor.GREEN + "reload");
-        help(player, ChatColor.GREEN + "(nothing)");
+        help(player, ChatColor.GREEN + "----- Locations Help ----");
+        help(player, ChatColor.GREEN + "/locs " + ChatColor.AQUA + "list available locations");
+        help(player, ChatColor.GREEN + "/locs set/add [name] " + ChatColor.AQUA + "creates a new location");
+        help(player, ChatColor.GREEN + "/locs delete [name] " + ChatColor.AQUA + "delete a location");
+        help(player, ChatColor.GREEN + "/locs remember [world/name] [true/false] " + ChatColor.AQUA + "remember ");
+        help(player, ChatColor.GREEN + "/locs delay [world/name] [sec] " + ChatColor.AQUA + "prevents combat teleporting");
+        help(player, ChatColor.GREEN + "/locs reload " + ChatColor.AQUA + "reload the currently existing worlds");
         return;
     }
 
