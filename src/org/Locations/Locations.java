@@ -34,7 +34,7 @@ public class Locations extends JavaPlugin {
         shortcuts = new HashMap();
         helpDesc = new HashMap() {{
             put("/locs", "list available locations");
-            put("/locs set/add [name]" + ChatColor.AQUA + "creates a new location");
+            put("/locs set/add [name]", "creates a new location");
             put("/locs delete [name]", "delete a location");
             put("/locs remember [world/name] [true/false]", "remember ");
             put("/locs delay [world/name] [sec]", "prevents combat teleporting");
