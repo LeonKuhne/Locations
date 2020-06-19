@@ -81,13 +81,13 @@ public class Teleporter {
         // determine destination
         Location destiLoc = locations.get(locationName);
         World destiWorld = destiLoc.getWorld();
-        WorldLocations destiWorldLocs = getWorldLocations(destiLoc.getWorld());
-        Location prevLoc = destiWorldLocs.getLastLoc(player, );
+        WorldLocations destiWorldLocs = getWorldLocations(destiWorld);
+        Location prevLoc = destiWorldLocs.getLastLoc(player, destiWorld);
         player.sendMessage("your prevous loc is " + prevLoc);
 
         // if previous location exists, and world set to remember
         if (prevLoc != null && destiWorldLocs.remember) {
-            player.sendMessage(ChatColor.GREEN + "Teleporting to world " + destiLoc.getWorld().getName());
+            player.sendMessage(ChatColor.GREEN + "Teleporting to world " + destiWorld.getName());
             player.teleport(prevLoc);
         }
 
