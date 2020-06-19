@@ -37,7 +37,7 @@ public class Locations extends JavaPlugin {
             put("/locs remember [world/name] [true/false]", "remember ");
             put("/locs delay [world/name] [sec]", "prevents combat teleporting");
             put("/locs reload", "reload the currently existing worlds");
-        }}
+        }};
 
         shortcuts = new HashMap();
         tele = new Teleporter(this);
