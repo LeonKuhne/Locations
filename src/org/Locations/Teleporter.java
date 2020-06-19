@@ -82,6 +82,7 @@ public class Teleporter {
         Location destination = locations.get(locationName);
         WorldLocations destiWorldLocs = getWorldLocations(destination.getWorld());
         Location prevLoc = destiWorldLocs.getLastLoc(player);
+        player.sendMessage("your prevous loc is " + prevLoc);
 
         // if previous location exists, and world set to remember
         if (prevLoc != null && destiWorldLocs.remember) {
