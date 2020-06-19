@@ -17,6 +17,10 @@ public class WorldSwitchListener implements Listener {
     @EventHandler
     public void returnToWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
-        Locations.tele.back(player);
+
+        if (!player.getWorld().equals(event.getFrom())) {
+            // only teleport when entering new world
+            Locations.tele.back(player);
+        }
     }
 }

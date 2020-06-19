@@ -46,7 +46,6 @@ public class Teleporter {
 
                 // save world location
                 if (worldLocs.remember){
-                    player.sendMessage("saving your position");
                     worldLocs.save(player);
                 }
 
@@ -90,7 +89,7 @@ public class Teleporter {
             if (player.getWorld().equals(destiWorld)) {
                 player.sendMessage(ChatColor.RED + "You're already in that world silly");
             } else {
-                player.sendMessage(ChatColor.AQUA + "Teleporting to world " + ChatColor.GREEN + destiWorld.getName());
+                player.sendMessage(ChatColor.AQUA + "Returning to " + ChatColor.GREEN + destiWorld.getName());
                 player.teleport(prevLoc);
             }
         }
