@@ -66,6 +66,8 @@ public class WorldLocations {
                 return worlds.get(world);
             }
         }
+
+        return null;
     }
 
     public void load() {
