@@ -17,7 +17,6 @@ public class WorldSwitchListener implements Listener {
     @EventHandler
     public void returnToWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
-        player.sendMessage("teleporting you back to your og location");
         Locations.tele.back(player);
     }
 }

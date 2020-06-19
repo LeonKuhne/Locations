@@ -57,13 +57,14 @@ public class WorldLocations {
     // UTIL
     //
     
-    public Location getLastLoc(Player player) {
+    public Location getLastLoc(Player player, World world) {
         Map<World, Location> worlds = lastLocations.get(player);
         if (worlds != null) {
-            World world = player.getWorld();
             if (worlds.containsKey(world)) {
                 return worlds.get(world);
             }
+        } else {
+            player.sendMessage("error: ")
         }
         return null;
     }
