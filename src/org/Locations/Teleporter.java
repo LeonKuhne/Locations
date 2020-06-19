@@ -46,6 +46,7 @@ public class Teleporter {
 
                 // save world location
                 if (worldLocs.remember){
+                    player.sendMessage("saving your position");
                     worldLocs.save(player);
                 }
 
