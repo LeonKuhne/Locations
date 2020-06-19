@@ -30,7 +30,9 @@ public class Locations extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        helpDesk = new HashMap() {{
+        tele = new Teleporter(this);
+        shortcuts = new HashMap();
+        helpDesc = new HashMap() {{
             put("/locs", "list available locations");
             put("/locs set/add [name]" + ChatColor.AQUA + "creates a new location");
             put("/locs delete [name]", "delete a location");
@@ -39,8 +41,6 @@ public class Locations extends JavaPlugin {
             put("/locs reload", "reload the currently existing worlds");
         }};
 
-        shortcuts = new HashMap();
-        tele = new Teleporter(this);
         getLogger().info("starting");
     }
     
