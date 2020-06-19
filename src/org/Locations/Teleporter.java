@@ -99,19 +99,19 @@ public class Teleporter {
      * toggle wether to remember the players location in that world
      */
     public void remember(String name, boolean remember) throws Exception {
-        getWL().remember = remember;
+        getWL(name).remember = remember;
     }
     
     public boolean remember(String name) throws Exception {
-        return getWL().remember;
+        return getWL(name).remember;
     }
     
     public void delay(String name, int delay) throws Exception {
-        getWL().delay = delay;
+        getWL(name).delay = delay;
     }
 
     public int delay(String name) throws Exception {
-        return getWL().delay;
+        return getWL(name).delay;
     }
 
     // UTIL
