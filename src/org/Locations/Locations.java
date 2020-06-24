@@ -16,7 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class Locations extends JavaPlugin {
 
-    Map<String, Commands> shortcuts;
+    Map<String, Command> shortcuts;
    
     private final HashMap<String, String> helpDesc = new HashMap() {{
         put("/locs", "list available locations");
