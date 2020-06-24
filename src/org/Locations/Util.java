@@ -56,7 +56,7 @@ public class Util {
                 Locations.tele.set(name, loc);
             } catch (Exception e) {
                 plugin.getLogger().info("failed to read in the location " + name + " at " + loc);
-                plugin.getLogger().info(e.printStackTrace());
+                e.printStackTrace();
             }
         }
     }
