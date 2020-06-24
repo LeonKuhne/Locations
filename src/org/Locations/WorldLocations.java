@@ -11,7 +11,7 @@ import org.bukkit.Tag;
 /**
  * @author leee leee
  */
-public class WorldLocations {
+public class WorldLocations implements ConfigurationSerializable {
     
     private Map<Player, Map<World, Location>> lastLocations;
 
@@ -19,10 +19,20 @@ public class WorldLocations {
     public int delay;
 
     public WorldLocations() {
+        registerClass(this.class);
+
         lastLocations = new HashMap();
         load();
     }
 
+    
+    // SERIALIZE
+    //
+
+    public Map<String, Object> serialize() {
+        return super.serialize();
+    }
+    
 
     // ACTIONS
     //
