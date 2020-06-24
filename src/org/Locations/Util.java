@@ -34,7 +34,7 @@ public class Util {
     
     public static FileConfiguration loadConfig(Plugin plugin, File file) {
         FileConfiguration config = new YamlConfiguration();
-        if (file.exists()) {
+        if (file != null && file.exists()) {
             config.load(file);
             return config;
         }
