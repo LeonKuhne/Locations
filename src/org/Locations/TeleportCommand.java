@@ -29,7 +29,7 @@ public class TeleportCommand extends Command {
             try {
                 tele.teleport(player, name);
             } catch (Exception e) {
-                player.sendMessage(e.getMessage());
+                player.sendMessage("could not tp to " + name +  ", "+ e.getMessage());
             }
             return true;
         }
