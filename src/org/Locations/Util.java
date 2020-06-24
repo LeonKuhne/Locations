@@ -80,13 +80,13 @@ public class Util {
         }
     }
 
-    public static Command registerTeleport(Plugin plugin, String string) {
+    public static Command registerTeleport(Plugin plugin, String string) throws Exception {
         TeleportCommand tpCommand = new TeleportCommand(string, Locations.tele);
         getCommandMap(plugin).register(string, tpCommand);
         return tpCommand;
     }
 
-    public static void unregisterTeleport(Plugin plugin, Command command) {
+    public static void unregisterTeleport(Plugin plugin, Command command) throws Exception {
         command.unregister(getCommandMap(plugin));
     }
 
