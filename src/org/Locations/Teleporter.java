@@ -147,7 +147,7 @@ public class Teleporter {
 
     public void save() {
         try {
-            Util.saveShortcuts(locations);
+            Util.saveShortcuts(plugin, locations);
         } catch (Exception e) {
             plugin.getLogger().info("failed to save locations");
         }
