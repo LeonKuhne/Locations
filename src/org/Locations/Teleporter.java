@@ -6,6 +6,7 @@ import java.util.Set;
 import java.lang.Math;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
+import org.bukkit.command.Command;
 import org.bukkit.World;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -19,6 +20,7 @@ public class Teleporter {
 
     private BukkitScheduler scheduler;
     private Map<String, Location> locations;
+    private Map<String, Command> shortcuts;
     private Map<World, WorldLocations> lastLocs;
     private Plugin plugin;
 
@@ -27,6 +29,7 @@ public class Teleporter {
         this.plugin = plugin;
         scheduler = plugin.getServer().getScheduler();
         locations = new HashMap();
+        shortcuts = new HashMap();
         lastLocs = new HashMap();
 
         updateWorlds();
@@ -111,12 +114,14 @@ public class Teleporter {
     }
 
     public void set(String name, Location location) {
-        Util.registerTeleport(this, name);
+        Command cmd = Util.registerTeleport(this, name);
+        shortcuts.put(name, cmd);
         locations.put(name, location);
     }
 
     public void delete(String name) {
-        Util.unregisterTeleport(this, name);
+        Command cmd = shortcuts.remove(name);
+        Util.unregisterTeleport(this, cmd);
         locations.remove(name);
     }
 

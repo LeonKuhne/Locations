@@ -1,6 +1,5 @@
 package org.Locations;
 
-import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.io.File;
@@ -14,8 +13,6 @@ import java.lang.reflect.Field;
 import java.io.IOException;
 
 public class Util {
-
-    List<Command> registeredCommands = new ArrayList();
 
     private static File findOrCreateConfig(Plugin plugin) {
         // find
@@ -41,7 +38,6 @@ public class Util {
                 // read in the commands
                 System.out.println(" -" + config.getKeys(false));
                 for (String name : config.getKeys(false)) {
-                    registerTeleport(plugin, name);
                     Location loc = null; // get this from the config value pair
                     Locations.tele.set(name, loc);
                 }
@@ -59,15 +55,14 @@ public class Util {
 
     }
 
-    public static void registerTeleport(Plugin plugin, String string) throws Exception {
+    public static Command registerTeleport(Plugin plugin, String string) throws Exception {
         TeleportCommand tpCommand = new TeleportCommand(string, Locations.tele);
         getCommandMap(plugin).register(string, tpCommand);
-        shortcuts.put(string, tpCommand);
+        return tpCommand;
     }
 
-    public static void unregisterTeleport(Plugin plugin, String string) throws Exception {
-        Command tpCommand = shortcuts.remove(string);
-        tpCommand.unregister(getCommandMap(plugin));
+    public static void unregisterTeleport(Plugin plugin, Command command) throws Exception {
+        command.unregister(getCommandMap(plugin));
     }
 
     private static CommandMap getCommandMap(Plugin plugin) throws Exception {
