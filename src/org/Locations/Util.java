@@ -65,13 +65,8 @@ public class Util {
         for (String name : locations.keySet()) {
             Location loc = locations.get(name);
 
-            // add to config
-            config.set(name, loc);
-
             // add the location to the config
-
-            config.setDefaults();
-
+            config.set(name, loc);
             
             // save the config file
             config.save();
