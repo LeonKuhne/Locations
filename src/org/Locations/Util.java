@@ -41,7 +41,7 @@ public class Util {
                         Location loc = null; // get this from they config value pair
                         tele.set(name, loc);
                     }
-                }}
+                }};
 
                 return shortcuts;
 
