@@ -16,8 +16,8 @@ import org.bukkit.Server;
 
 public class Util {
 
+    // find or create
     private static File findFile(Plugin plugin) {
-        // find or create
         File file = new File(plugin.getDataFolder(), "leeslocs.yml");
         if (!file.exists()) {
             file.getParentFile().mkdirs();
@@ -32,7 +32,7 @@ public class Util {
 
             try {
                 config.load(file);
-            } catch (FileNotFoundException e) {
+            } catch (IOException e) {
                 plugin.getLogger().info("Couldn't find config file");
             }
 
