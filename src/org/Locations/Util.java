@@ -53,7 +53,7 @@ public class Util {
     // WORLDS
     //
     
-    public static Map<World, orldLocations> loadWorlds(Plugin plugin) {
+    public static Map<World, WorldLocations> loadWorlds(Plugin plugin) {
         Map<World, WorldLocations> worlds = new HashMap();
         
         // load config
