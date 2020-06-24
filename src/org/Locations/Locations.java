@@ -38,13 +38,13 @@ public class Locations extends JavaPlugin {
         shortcuts = new HashMap();
         tele = new Teleporter(this);
         getServer().getPluginManager().registerEvents(new WorldSwitchListener(), this);
-        getLogger().info("starting");
+        getLogger().info("loading locations");
     }
     
     @Override
     public void onDisable() {
         tele.save();
-        getLogger().info("stopping");
+        getLogger().info("storing locations");
     }
 
     @Override
