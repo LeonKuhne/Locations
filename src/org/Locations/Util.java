@@ -53,8 +53,8 @@ public class Util {
     // WORLDS
     //
     
-    public static Map<String, WorldLocations> loadWorlds(Plugin plugin) {
-        Map<String, WorldLocations> worlds = new HashMap();
+    public static Map<World, WorldLocations> loadWorlds(Plugin plugin) {
+        Map<World, WorldLocations> worlds = new HashMap();
         
         // load config
         File file = findFile(plugin, "leeswords.yml");
