@@ -203,7 +203,7 @@ public class Teleporter {
     }
 
     public String toString() {
-        return getNames().toString();
+        return (locations.size > 0) ? getNames().toString() : "None exist yet";
     }
 
     public void updateWorlds() {
