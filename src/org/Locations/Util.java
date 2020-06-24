@@ -15,7 +15,7 @@ import org.bukkit.Server;
 
 public class Util {
 
-    private static File findOrCreateConfig(Plugin plugin) {
+    private static File findOrCreateConfig(Plugin plugin) throws IOException {
         // find
         File file = new File(plugin.getDataFolder(), "leeslocs.yml");
 
@@ -53,7 +53,6 @@ public class Util {
 
     public static void saveShortcuts(Plugin plugin) {
         // save
-
     }
 
     public static Command registerTeleport(Plugin plugin, String string) throws Exception {

@@ -31,8 +31,13 @@ public class Teleporter {
         locations = new HashMap();
         shortcuts = new HashMap();
         lastLocs = new HashMap();
+        
+        try {
+            Util.loadShortcuts(plugin);
+        } catch (IOException) {
+            
+        }
 
-        Util.loadShortcuts(plugin);
         updateWorlds();
     }
 
@@ -146,6 +151,7 @@ public class Teleporter {
     }
 
     public void save() {
+        Util.saveShortcuts(locations);
     }
 
     // UTIL
