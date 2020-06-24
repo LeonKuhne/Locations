@@ -56,7 +56,7 @@ public class Teleporter {
                 // if moving don't teleport
                 Vector vel = player.getVelocity();
                 if (vel.getX() != 0 || vel.getZ() != 0 || Math.abs(vel.getY()) >= 0.1) {
-                    throw Exception("You're moving to fast, can't teleport");
+                    throw new Exception("You're moving to fast, can't teleport");
                 }
 
                 // teleport after delay
