@@ -37,7 +37,7 @@ public class Util {
         if (file != null && file.exists()) {
 
             try {
-                config.load(file);
+                config.load(file, Loader=yaml.Loader);
             } catch (InvalidConfigurationException e) {
                 plugin.getLogger().info("Couldn't read config file, syntax error? " + e.getMessage());
             } catch (IOException e) {
