@@ -63,7 +63,7 @@ public class Util {
     }
 
     public static void registerTeleport(Plugin plugin, String string) throws Exception {
-        TeleportCommand tpCommand = new TeleportCommand(string, tele);
+        TeleportCommand tpCommand = new TeleportCommand(string, Locations.tele);
         getCommandMap(plugin).register(string, tpCommand);
         shortcuts.put(string, tpCommand);
     }
