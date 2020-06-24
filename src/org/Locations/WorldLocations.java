@@ -19,7 +19,7 @@ public class WorldLocations implements ConfigurationSerializable {
     public int delay;
 
     public WorldLocations() {
-        registerClass(this.class);
+        registerClass(WorldLocations.class);
 
         lastLocations = new HashMap();
         load();
