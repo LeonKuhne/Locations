@@ -34,7 +34,7 @@ public class Util {
                 config.load(file);
                 
                 // read in the commands
-                Sytem.out.println(" -" + config.getKeys());
+                Sytem.out.println(" -" + config);
                 Map shortcuts = new HashMap() {{
                     for (String name : config.getKeys()) {
                         registerTeleport(plugin, name);
