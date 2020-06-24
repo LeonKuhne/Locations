@@ -7,6 +7,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.ChatColor;
 import org.bukkit.Tag;
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
 
 /**
  * @author leee leee
