@@ -34,7 +34,7 @@ public class Teleporter {
         
         try {
             Util.loadShortcuts(plugin);
-        } catch (IOException) {
+        } catch (IOException e) {
             plugin.getLogger().info("Failed to load saved locations, IO error");
         }
 
