@@ -6,6 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.command.Command;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.command.CommandMap;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import java.lang.reflect.Field;
 
