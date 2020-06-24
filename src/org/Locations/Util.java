@@ -15,7 +15,7 @@ import org.bukkit.Server;
 
 public class Util {
 
-    private static File findOrCreateConfig(Plugin plugin) throws IOException {
+    private static File findShortcutFile(Plugin plugin) throws IOException {
         // find
         File file = new File(plugin.getDataFolder(), "leeslocs.yml");
 
@@ -28,30 +28,54 @@ public class Util {
         return file;
     }
     
-    public static void loadShortcuts(Plugin plugin) {
-        // load config
+    public static FileConfiguration findConfig(Plugin plugin) {
         FileConfiguration config = new YamlConfiguration();
         try {
-            File file = findOrCreateConfig(plugin);
+
+            // load the file into a config
+            File file = findShortcutFile(plugin);
             if (file.exists()) {
                 config.load(file);
-            
-                // read in the commands
-                System.out.println(" -" + config.getKeys(false));
-                for (String name : config.getKeys(false)) {
-                    Location loc = null; // get this from the value
-                    Locations.tele.set(name, loc);
-                }
+                return config;
             }
+
         } catch (IOException e) {
             plugin.getLogger().info("Failed to load saved locations, IO error");
-        } catch (Exception e) {
-            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static void loadShortcuts(Plugin plugin) {
+        // load config
+        FileConfiguration config = findConfig();
+
+        // read in the commands
+        System.out.println(" -" + config.getKeys(false));
+        for (String name : config.getKeys(false)) {
+            Location loc = config.getLocation(name);
+            Locations.tele.set(name, loc);
         }
     }
 
-    public static void saveShortcuts(Plugin plugin) {
-        // save
+    public static void saveShortcuts(Plugin plugin, Map<String, Location> locations) {
+        // load config
+        FileConfiguration config = findConfig();
+
+        for (String name : locations.keySet()) {
+            Location loc = locations.get(name);
+
+            // add to config
+            config.set(name, loc);
+
+            // add the location to the config
+
+            config.setDefaults();
+
+            
+            // save the config file
+            config.save();
+        }
     }
 
     public static Command registerTeleport(Plugin plugin, String string) throws Exception {
