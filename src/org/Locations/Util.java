@@ -53,7 +53,11 @@ public class Util {
         System.out.println(" -" + config.getKeys(false));
         for (String name : config.getKeys(false)) {
             Location loc = config.getLocation(name);
-            Locations.tele.set(name, loc);
+            try {
+                Locations.tele.set(name, loc);
+            } catch (Exception e) {
+                plugin.getLogger().info("failed to read in the location " + name + " at " + loc);
+            }
         }
     }
 
