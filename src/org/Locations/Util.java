@@ -29,25 +29,24 @@ public class Util {
     }
     
     public static void loadShortcuts(Plugin plugin) {
+        // load config
         FileConfiguration config = new YamlConfiguration();
-        File file = findOrCreateConfig(plugin);
-        
-        if (file.exists()) {
-            try {
+        try {
+            File file = findOrCreateConfig(plugin);
+            if (file.exists()) {
                 config.load(file);
-                
+            
                 // read in the commands
                 System.out.println(" -" + config.getKeys(false));
                 for (String name : config.getKeys(false)) {
                     Location loc = null; // get this from the value
                     Locations.tele.set(name, loc);
                 }
-
-            } catch (IOException e) {
-                plugin.getLogger().info("Failed to load saved locations, IO error");
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        } catch (IOException e) {
+            plugin.getLogger().info("Failed to load saved locations, IO error");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
