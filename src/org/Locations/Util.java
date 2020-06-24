@@ -22,11 +22,11 @@ public class Util {
     //
 
     // find or create
-    private static File findFile(Plugin plugin) {
-        File file = new File(plugin.getDataFolder(), "leeslocs.yml");
+    private static File findFile(Plugin plugin, String name) {
+        File file = new File(plugin.getDataFolder(), name);
         if (!file.exists()) {
             file.getParentFile().mkdirs();
-            plugin.saveResource("leeslocs.yml", false);
+            plugin.saveResource(name, false);
         }
         return file;
     }
@@ -48,6 +48,47 @@ public class Util {
         return null;
     }
 
+    // 
+    // WORLDS
+    //
+    
+    public static Map<String, WorldLocations> loadWorlds(Plugin plugin) {
+        Map<String, WorldLocations> worlds = new HashMap();
+        
+        // load config
+        File file = findFile(plugin, "leeswords.yml");
+        FileConfiguration config = loadConfig(plugin, file);
+
+        // read in worlds
+        for (String worldName : config.getKeys(false)) {
+            WorldLocations worldLocs = config.getObject(worldName, WorldLocations);
+            World world = plugin.getServer().getWorld(worldName);
+            worlds.put(world, worldLocs);
+        }
+
+        return worlds;
+    }
+
+    public static void saveWorlds(Plugin plugin, Map<World, WorldLocations> worlds) {
+        // load config
+        File file = findFile(plugin, "leeswords.yml");
+        FileConfiguration config = loadConfig(plugin, file);
+
+        // add to config
+        for (World world : worlds) {
+            String worldName = world.getName();
+            WorldLocations worldLocs = worlds.get(world);
+            config.set(worldName, worldLocs);
+        }
+
+        // save
+        try {
+            config.save(file);
+        } catch (IOException e) {
+            plugin.getLogger().info("Failed to save worlds, IO error");
+        }
+    }
+
     //
     // SHORTCUTS
     //
@@ -56,7 +97,7 @@ public class Util {
         Map<String, Location> locations = new HashMap();
         
         // load config
-        File file = findFile(plugin);
+        File file = findFile(plugin, "leeslocs.yml");
         FileConfiguration config = loadConfig(plugin, file);
 
         // read in the locations
@@ -70,20 +111,19 @@ public class Util {
 
     public static void saveShortcuts(Plugin plugin, Map<String, Location> locations) {
         // load config
-        File file = findFile(plugin);
+        File file = findFile(plugin, "leeslocs.yml");
         FileConfiguration config = loadConfig(plugin, file);
 
-        // save the locations
+        // add to config
         for (String name : locations.keySet()) {
             Location loc = locations.get(name);
+            config.set(name, loc);
+        }
 
-            try {
-                // save to files
-                config.set(name, loc);
-                config.save(file);
-            } catch (IOException e) {
-                plugin.getLogger().info("Failed to save locations, IO error");
-            }
+        try {
+            config.save(file);
+        } catch (IOException e) {
+            plugin.getLogger().info("Failed to save locations, IO error");
         }
     }
 
