@@ -28,7 +28,7 @@ echo -e "$src_files" | awk '{ print "compiling... " $0 }'
 echo -en "\e[32m"
 
 # add config to jar (plugin.yml)
-jar -cf "$script_dist/Locations.jar" plugin.yml
+jar -cf "$script_dist/Locations.jar" *.yml
 
 # create .class files
 javac -cp $script_lib/*.jar $src_files -d $script_build
