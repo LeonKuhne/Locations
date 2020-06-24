@@ -27,8 +27,6 @@ public class Util {
             }
             return file;
 
-        } catch (IOException e) {
-            plugin.getLogger().info("Failed to load saved locations, IO error");
         } catch (FileNotFoundException e) {
             plugin.getLogger().info("Couldn't find config file for saved locations");
         }
