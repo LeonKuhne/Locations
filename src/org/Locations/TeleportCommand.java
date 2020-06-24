@@ -24,11 +24,8 @@ public class TeleportCommand extends Command {
             Player player = (Player) cs;
 
             String name = string.toLowerCase();
-            try {
-                tele.teleport(player, name);
-            } catch (Exception e) {
-                player.sendMessage(ChatColor.RED + "Could not tp to " + name + ". " + e.getMessage());
-            }
+            tele.teleport(player, name);
+            
             return true;
         }
 

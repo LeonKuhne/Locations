@@ -40,7 +40,7 @@ public class Teleporter {
     // ACTIONS
     //
     
-    public void teleport(Player player, String name) throws Exception {
+    public void teleport(Player player, String name) {
         World world = player.getWorld();
 
         if (lastLocs.containsKey(world)) {
@@ -56,7 +56,8 @@ public class Teleporter {
                 // if moving don't teleport
                 Vector vel = player.getVelocity();
                 if (vel.getX() != 0 || vel.getZ() != 0 || Math.abs(vel.getY()) >= 0.1) {
-                    throw new Exception("You're moving to fast, can't teleport");
+                    player.sendMessage("You're moving to fast, can't teleport");
+                    return;
                 }
 
                 // teleport after delay

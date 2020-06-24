@@ -9,12 +9,12 @@ main: org.Locations.Locations
 commands:
     locations:
         description: Leeeleee's Locations
-        permission: spigotplugin.locs
-        usage: /<command>
+        permission: leeeleees.locs
+        usage: /<command> help
     locs:
         description: Leeeleee's Locations
-        permission: spigotplugin.locs
-        usage: /<command>
+        permission: leeeleees.locs
+        usage: /<command> help
 
 
 permissions: {}
