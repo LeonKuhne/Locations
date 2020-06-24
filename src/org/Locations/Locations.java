@@ -43,6 +43,7 @@ public class Locations extends JavaPlugin {
     
     @Override
     public void onDisable() {
+        tele.save();
         getLogger().info("stopping");
     }
 
@@ -171,10 +172,4 @@ public class Locations extends JavaPlugin {
             help(player, ChatColor.GREEN + entry.getKey() + ": " + ChatColor.AQUA + entry.getValue());
         }
     }
-
-    
-    // REGISTER COMMANDS
-    //
-
-    
 }

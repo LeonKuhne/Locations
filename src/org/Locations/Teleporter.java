@@ -32,6 +32,7 @@ public class Teleporter {
         shortcuts = new HashMap();
         lastLocs = new HashMap();
 
+        loadShortcuts();
         updateWorlds();
     }
 
@@ -142,6 +143,9 @@ public class Teleporter {
 
     public int delay(String name) throws Exception {
         return getWL(name).delay;
+    }
+
+    public void save() {
     }
 
     // UTIL

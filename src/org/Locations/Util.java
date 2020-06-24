@@ -39,7 +39,7 @@ public class Util {
                 // read in the commands
                 System.out.println(" -" + config.getKeys(false));
                 for (String name : config.getKeys(false)) {
-                    Location loc = null; // get this from the config value pair
+                    Location loc = null; // get this from the value
                     Locations.tele.set(name, loc);
                 }
 
