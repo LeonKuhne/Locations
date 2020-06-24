@@ -13,6 +13,7 @@ import java.lang.reflect.Field;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import org.bukkit.Server;
+import org.bukkit.configuration.InvalidConfigurationException;
 
 public class Util {
 
