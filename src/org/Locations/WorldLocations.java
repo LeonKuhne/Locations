@@ -18,6 +18,9 @@ public class WorldLocations {
     public int delay;
 
     public WorldLocations() {
+    }
+
+    public WorldLocations() {
         lastLocations = new HashMap();
         load();
     }
