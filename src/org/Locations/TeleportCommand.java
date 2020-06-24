@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
  */
 public class TeleportCommand extends Command {
 
-    public TeleportCommand(String name, Teleporter tele) {
+    public TeleportCommand(String name) {
         super(name);
     }
 
