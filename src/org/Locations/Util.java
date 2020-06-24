@@ -27,8 +27,6 @@ public class Util {
             }
             return file;
 
-        } catch (FileNotFoundException e) {
-            plugin.getLogger().info("Couldn't find config file for saved locations");
         }
         return null;
     }
@@ -36,7 +34,13 @@ public class Util {
     public static FileConfiguration loadConfig(Plugin plugin, File file) {
         FileConfiguration config = new YamlConfiguration();
         if (file != null && file.exists()) {
-            config.load(file);
+
+            try {
+                config.load(file);
+            } catch (FileNotFoundException e) {
+                plugin.getLogger().info("Couldn't find config file for saved locations");
+            }
+
             return config;
         }
         return null;
