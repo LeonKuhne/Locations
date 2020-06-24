@@ -54,7 +54,7 @@ public class Locations extends JavaPlugin {
             Player player = (Player) cs;
 
             // admin commands
-            if (player.hasPermissions("spigot.locs") && (string.equals("locs") || string.equals("locations"))) {
+            if (player.hasPermission("leeeleees.locs") && (string.equals("locs") || string.equals("locations"))) {
                 locsHandler(player, new ArrayList(Arrays.asList(args)));
                 return true;
             }
