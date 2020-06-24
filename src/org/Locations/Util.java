@@ -60,7 +60,7 @@ public class Util {
 
     public static void saveShortcuts(Plugin plugin, Map<String, Location> locations) {
         // load config
-        FileConfiguration config = findConfig();
+        FileConfiguration config = findConfig(plugin);
 
         for (String name : locations.keySet()) {
             Location loc = locations.get(name);
