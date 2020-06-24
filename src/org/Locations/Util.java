@@ -76,7 +76,7 @@ public class Util {
         FileConfiguration config = loadConfig(plugin, file);
 
         // add to config
-        for (World world : worlds) {
+        for (World world : worlds.keySet()) {
             String worldName = world.getName();
             WorldLocations worldLocs = worlds.get(world);
             config.set(worldName, worldLocs);
