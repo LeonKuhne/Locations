@@ -17,6 +17,10 @@ import org.bukkit.configuration.InvalidConfigurationException;
 
 public class Util {
 
+    // 
+    // CONFIG
+    //
+
     // find or create
     private static File findFile(Plugin plugin) {
         File file = new File(plugin.getDataFolder(), "leeslocs.yml");
@@ -44,7 +48,13 @@ public class Util {
         return null;
     }
 
-    public static void loadShortcuts(Plugin plugin) {
+    //
+    // SHORTCUTS
+    //
+
+    public static Map<String, Location> loadShortcuts(Plugin plugin) {
+        Map<String, Location> locations = new HashMap();
+        
         // load config
         File file = findFile(plugin);
         FileConfiguration config = loadConfig(plugin, file);
@@ -52,13 +62,10 @@ public class Util {
         // read in the locations
         for (String name : config.getKeys(false)) {
             Location loc = config.getLocation(name);
-            try {
-                Locations.tele.set(name, loc);
-            } catch (Exception e) {
-                plugin.getLogger().info("failed to read in the location " + name + " at " + loc);
-                e.printStackTrace();
-            }
+            locations.put(name, loc);
         }
+
+        return locations;
     }
 
     public static void saveShortcuts(Plugin plugin, Map<String, Location> locations) {
@@ -78,6 +85,19 @@ public class Util {
                 plugin.getLogger().info("Failed to save locations, IO error");
             }
         }
+    }
+
+    //
+    // COMMAND REGISTRY
+    //
+
+    public Map<String, Command> createShortcuts(Plugin plugin, Map<String, Location> locations) {
+        Map<String, Command> shortcuts = new HashMap();
+        for (String name : locations.keySet()) {
+            Command cmd = registerTeleport(plugin, name);
+            shortcuts.put(name, cmd);
+        }
+        return shortcuts;
     }
 
     public static Command registerTeleport(Plugin plugin, String string) throws Exception {

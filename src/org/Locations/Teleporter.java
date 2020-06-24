@@ -28,11 +28,11 @@ public class Teleporter {
     public Teleporter(Plugin plugin) {
         this.plugin = plugin;
         scheduler = plugin.getServer().getScheduler();
-        locations = new HashMap();
-        shortcuts = new HashMap();
+
+        locations = Util.loadShortcuts(plugin);
+        shortcuts = Util.createShortcuts(plugin, locations);
         lastLocs = new HashMap();
-        
-        Util.loadShortcuts(plugin);
+
         updateWorlds();
     }
 
@@ -213,4 +213,5 @@ public class Teleporter {
             }
         }
     }
+
 }
