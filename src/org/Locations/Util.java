@@ -37,7 +37,7 @@ public class Util {
         if (file != null && file.exists()) {
 
             try {
-                config.load(file, Loader=yaml.Loader);
+                config.load(file);
             } catch (InvalidConfigurationException e) {
                 plugin.getLogger().info("Couldn't read config file, syntax error? " + e.getMessage());
             } catch (IOException e) {
@@ -62,7 +62,7 @@ public class Util {
 
         // read in worlds
         for (String worldName : config.getKeys(false)) {
-            WorldLocations worldLocs = config.getObject(worldName, WorldLocations.class);
+            WorldLocations worldLocs = config.getMapList(worldName);
             World world = plugin.getServer().getWorld(worldName);
             worlds.put(world, worldLocs);
         }

@@ -18,10 +18,6 @@ public class WorldLocations {
     public boolean remember;
     public int delay;
 
-    public WorldLocations(Tag tag) {
-        System.out.println("we are eating breakfast!");
-    }
-
     public WorldLocations() {
         lastLocations = new HashMap();
         load();
