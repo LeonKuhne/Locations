@@ -113,13 +113,13 @@ public class Teleporter {
         }
     }
 
-    public void set(String name, Location location) {
+    public void set(String name, Location location) throws Exception {
         Command cmd = Util.registerTeleport(plugin, name);
         shortcuts.put(name, cmd);
         locations.put(name, location);
     }
 
-    public void delete(String name) {
+    public void delete(String name) throws Exception {
         Command cmd = shortcuts.remove(name);
         Util.unregisterTeleport(plugin, cmd);
         locations.remove(name);
