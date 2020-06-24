@@ -32,6 +32,8 @@ public class Util {
 
             try {
                 config.load(file);
+            } catch (InvalidConfigurationException e) {
+                plugin.getLogger().info("Couldn't read config file, syntax error?", e.printStackTrace());
             } catch (IOException e) {
                 plugin.getLogger().info("Couldn't find config file");
             }
