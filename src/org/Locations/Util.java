@@ -10,9 +10,9 @@ import org.bukkit.command.CommandMap;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import java.lang.reflect.Field;
+import java.io.IOException;
 
 public class Util {
-
 
     private static File findOrCreateConfig(Plugin plugin) {
         // find
