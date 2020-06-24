@@ -57,7 +57,7 @@ public class Util {
         Map<World, WorldLocations> worlds = new HashMap();
         
         // load config
-        File file = findFile(plugin, "leeswords.yml");
+        File file = findFile(plugin, "leesworlds.yml");
         FileConfiguration config = loadConfig(plugin, file);
 
         // read in worlds
@@ -72,7 +72,7 @@ public class Util {
 
     public static void saveWorlds(Plugin plugin, Map<World, WorldLocations> worlds) {
         // load config
-        File file = findFile(plugin, "leeswords.yml");
+        File file = findFile(plugin, "leesworlds.yml");
         FileConfiguration config = loadConfig(plugin, file);
 
         // add to config
