@@ -32,7 +32,7 @@ public class Teleporter {
         shortcuts = new HashMap();
         lastLocs = new HashMap();
 
-        Util.loadShortcuts();
+        Util.loadShortcuts(plugin);
         updateWorlds();
     }
 
