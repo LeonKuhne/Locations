@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 public class Util {
 
 
-    private File findOrCreateConfig(Plugin plugin) {
+    private static File findOrCreateConfig(Plugin plugin) {
         // find
         File file = new File(plugin.getDataFolder(), "leeslocs.yml");
 
