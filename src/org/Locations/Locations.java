@@ -101,7 +101,7 @@ public class Locations extends JavaPlugin {
                 case "add":
                 case "set":
                     try {
-                        registerTeleport(name);
+                        Util.registerTeleport(this, name);
                         tele.set(name, player.getLocation());
                         help(player, "Set location " + ChatColor.GREEN + name);
                     } catch (Exception e) {
@@ -111,7 +111,7 @@ public class Locations extends JavaPlugin {
 
                 case "delete":
                     try {
-                        unregisterTeleport(name);
+                        Util.unregisterTeleport(this, name);
                         tele.delete(name);
                         help(player, "Deleted location " + ChatColor.GREEN + name);
                     } catch (Exception e) {
@@ -178,20 +178,5 @@ public class Locations extends JavaPlugin {
     // REGISTER COMMANDS
     //
 
-    public void registerTeleport(String string) throws Exception {
-        TeleportCommand tpCommand = new TeleportCommand(string, tele);
-        getCommandMap().register(string, tpCommand);
-        shortcuts.put(string, tpCommand);
-    }
-
-    public void unregisterTeleport(String string) throws Exception {
-        Command tpCommand = shortcuts.remove(string);
-        tpCommand.unregister(getCommandMap());
-    }
-
-    private CommandMap getCommandMap() throws Exception {
-        Field bukkitCmdMap = getServer().getClass().getDeclaredField("commandMap");
-        bukkitCmdMap.setAccessible(true);
-        return (CommandMap) bukkitCmdMap.get(getServer());
-    }
+    
 }
