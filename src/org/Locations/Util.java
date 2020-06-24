@@ -17,18 +17,13 @@ import org.bukkit.Server;
 public class Util {
 
     private static File findFile(Plugin plugin) {
-        try {
-
-            // find or create
-            File file = new File(plugin.getDataFolder(), "leeslocs.yml");
-            if (!file.exists()) {
-                file.getParentFile().mkdirs();
-                plugin.saveResource("leeslocs.yml", false);
-            }
-            return file;
-
+        // find or create
+        File file = new File(plugin.getDataFolder(), "leeslocs.yml");
+        if (!file.exists()) {
+            file.getParentFile().mkdirs();
+            plugin.saveResource("leeslocs.yml", false);
         }
-        return null;
+        return file;
     }
     
     public static FileConfiguration loadConfig(Plugin plugin, File file) {
@@ -38,7 +33,7 @@ public class Util {
             try {
                 config.load(file);
             } catch (FileNotFoundException e) {
-                plugin.getLogger().info("Couldn't find config file for saved locations");
+                plugin.getLogger().info("Couldn't find config file");
             }
 
             return config;
