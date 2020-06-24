@@ -17,6 +17,10 @@ public class WorldLocations {
     public boolean remember;
     public int delay;
 
+    public WorldLocations(String serial) {
+        System.out.println("we are eating breakfast!");
+    }
+
     public WorldLocations() {
         lastLocations = new HashMap();
         load();
