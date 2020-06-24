@@ -1,5 +1,6 @@
 package org.Locations;
 
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.io.File;
@@ -14,6 +15,8 @@ import java.io.IOException;
 
 public class Util {
 
+    List<Command> registeredCommands = new ArrayList();
+
     private static File findOrCreateConfig(Plugin plugin) {
         // find
         File file = new File(plugin.getDataFolder(), "leeslocs.yml");
@@ -27,7 +30,7 @@ public class Util {
         return file;
     }
     
-    public static Map<String, Command> loadShortcuts(Plugin plugin) {
+    public static void loadShortcuts(Plugin plugin) {
         FileConfiguration config = new YamlConfiguration();
         File file = findOrCreateConfig(plugin);
         
@@ -37,15 +40,11 @@ public class Util {
                 
                 // read in the commands
                 System.out.println(" -" + config.getKeys(false));
-                Map shortcuts = new HashMap() {{
-                    for (String name : config.getKeys(false)) {
-                        registerTeleport(plugin, name);
-                        Location loc = null; // get this from they config value pair
-                        Locations.tele.set(name, loc);
-                    }
-                }};
-
-                return shortcuts;
+                for (String name : config.getKeys(false)) {
+                    registerTeleport(plugin, name);
+                    Location loc = null; // get this from the config value pair
+                    Locations.tele.set(name, loc);
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -53,8 +52,6 @@ public class Util {
                 e.printStackTrace();
             }
         }
-
-        return null;
     }
 
     public static void saveShortcuts(Plugin plugin) {

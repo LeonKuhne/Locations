@@ -15,11 +15,13 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @author leee leee
  */
 public class Locations extends JavaPlugin {
+
+    Map<String, Commands> shortcuts;
    
     private final HashMap<String, String> helpDesc = new HashMap() {{
         put("/locs", "list available locations");
         put("/locs set/add [name]", "creates a new location");
-        put("/locs delete [name]", "delete a location");
+        put("/locs delete/remove [name]", "delete a location");
         put("/locs remember [world/name] [true/false]", "remember last location");
         put("/locs delay [world/name] [sec]", "prevents teleporting during combat");
         put("/locs reload", "reload the currently existing worlds");
@@ -33,6 +35,7 @@ public class Locations extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        shortcuts = new HashMap();
         tele = new Teleporter(this);
         getServer().getPluginManager().registerEvents(new WorldSwitchListener(), this);
         getLogger().info("starting");
@@ -105,6 +108,7 @@ public class Locations extends JavaPlugin {
                     return;
 
                 case "delete":
+                case "remove":
                     try {
                         tele.delete(name);
                         help(player, "Deleted location " + ChatColor.GREEN + name);
