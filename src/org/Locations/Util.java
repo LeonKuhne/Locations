@@ -94,8 +94,12 @@ public class Util {
     public Map<String, Command> createShortcuts(Plugin plugin, Map<String, Location> locations) {
         Map<String, Command> shortcuts = new HashMap();
         for (String name : locations.keySet()) {
-            Command cmd = registerTeleport(plugin, name);
-            shortcuts.put(name, cmd);
+            try {
+                Command cmd = registerTeleport(plugin, name);
+                shortcuts.put(name, cmd);
+            } catch (Exception e) {
+                plugin.getLogger().info("failed to load command " + cmd);
+            }
         }
         return shortcuts;
     }
