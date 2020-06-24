@@ -11,11 +11,8 @@ import org.bukkit.command.CommandSender;
  */
 public class TeleportCommand extends Command {
 
-    Teleporter tele;
-    
     public TeleportCommand(String name, Teleporter tele) {
         super(name);
-        this.tele = tele;
     }
 
     @Override
@@ -24,7 +21,7 @@ public class TeleportCommand extends Command {
             Player player = (Player) cs;
 
             String name = string.toLowerCase();
-            tele.teleport(player, name);
+            Locations.tele.teleport(player, name);
             
             return true;
         }

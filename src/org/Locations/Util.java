@@ -105,7 +105,7 @@ public class Util {
     }
 
     public static Command registerTeleport(Plugin plugin, String string) throws Exception {
-        TeleportCommand tpCommand = new TeleportCommand(string, Locations.tele);
+        TeleportCommand tpCommand = new TeleportCommand(string);
         getCommandMap(plugin).register(string, tpCommand);
         return tpCommand;
     }
