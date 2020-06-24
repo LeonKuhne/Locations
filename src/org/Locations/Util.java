@@ -91,7 +91,7 @@ public class Util {
     // COMMAND REGISTRY
     //
 
-    public Map<String, Command> createShortcuts(Plugin plugin, Map<String, Location> locations) {
+    public static Map<String, Command> createShortcuts(Plugin plugin, Map<String, Location> locations) {
         Map<String, Command> shortcuts = new HashMap();
         for (String name : locations.keySet()) {
             try {
