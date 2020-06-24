@@ -98,7 +98,7 @@ public class Util {
                 Command cmd = registerTeleport(plugin, name);
                 shortcuts.put(name, cmd);
             } catch (Exception e) {
-                plugin.getLogger().info("failed to load command " + cmd);
+                plugin.getLogger().info("failed to load command " + name);
             }
         }
         return shortcuts;
