@@ -62,7 +62,7 @@ public class Util {
 
         // read in worlds
         for (String worldName : config.getKeys(false)) {
-            WorldLocations worldLocs = config.getObject(worldName, WorldLocations.getClass());
+            WorldLocations worldLocs = config.getObject(worldName, WorldLocations);
             World world = plugin.getServer().getWorld(worldName);
             worlds.put(world, worldLocs);
         }
