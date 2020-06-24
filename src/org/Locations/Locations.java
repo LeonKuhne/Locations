@@ -37,7 +37,7 @@ public class Locations extends JavaPlugin {
     @Override
     public void onEnable() {
         tele = new Teleporter(this);
-        shortcuts = new HashMap();
+        shortcuts = Util.loadShortcuts();
         getServer().getPluginManager().registerEvents(new WorldSwitchListener(), this);
         getLogger().info("starting");
     }
