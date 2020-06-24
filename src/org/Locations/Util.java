@@ -48,7 +48,7 @@ public class Util {
 
     public static void loadShortcuts(Plugin plugin) {
         // load config
-        FileConfiguration config = findConfig();
+        FileConfiguration config = findConfig(plugin);
 
         // read in the commands
         System.out.println(" -" + config.getKeys(false));
