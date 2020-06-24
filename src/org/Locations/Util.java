@@ -53,7 +53,7 @@ public class Util {
     // WORLDS
     //
     
-    public static Map<World, WorldLocations> loadWorlds(Plugin plugin) {
+    public static Map<World, orldLocations> loadWorlds(Plugin plugin) {
         Map<World, WorldLocations> worlds = new HashMap();
         
         // load config
@@ -62,7 +62,7 @@ public class Util {
 
         // read in worlds
         for (String worldName : config.getKeys(false)) {
-            WorldLocations worldLocs = config.getObject(worldName, WorldLocations.class, WorldLocations);
+            WorldLocations worldLocs = config.getObject(worldName, WorldLocations.class);
             World world = plugin.getServer().getWorld(worldName);
             worlds.put(world, worldLocs);
         }
