@@ -63,11 +63,13 @@ public class Util {
         for (String name : locations.keySet()) {
             Location loc = locations.get(name);
 
-            // add the location to the config
-            config.set(name, loc);
-            
-            // save the config file
-            config.save(file);
+            try {
+                // save to files
+                config.set(name, loc);
+                config.save(file);
+            } catch (IOException e) {
+                plugin.getLogger().info("Failed to save locations, IO error");
+            }
         }
     }
 
