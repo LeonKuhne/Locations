@@ -114,14 +114,14 @@ public class Teleporter {
     }
 
     public void set(String name, Location location) {
-        Command cmd = Util.registerTeleport(this, name);
+        Command cmd = Util.registerTeleport(plugin, name);
         shortcuts.put(name, cmd);
         locations.put(name, location);
     }
 
     public void delete(String name) {
         Command cmd = shortcuts.remove(name);
-        Util.unregisterTeleport(this, cmd);
+        Util.unregisterTeleport(plugin, cmd);
         locations.remove(name);
     }
 
