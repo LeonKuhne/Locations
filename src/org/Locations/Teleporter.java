@@ -32,12 +32,7 @@ public class Teleporter {
         shortcuts = new HashMap();
         lastLocs = new HashMap();
         
-        try {
-            Util.loadShortcuts(plugin);
-        } catch (IOException e) {
-            plugin.getLogger().info("Failed to load saved locations, IO error");
-        }
-
+        Util.loadShortcuts(plugin);
         updateWorlds();
     }
 

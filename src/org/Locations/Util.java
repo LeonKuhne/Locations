@@ -44,7 +44,7 @@ public class Util {
                 }
 
             } catch (IOException e) {
-                e.printStackTrace();
+                plugin.getLogger().info("Failed to load saved locations, IO error");
             } catch (Exception e) {
                 e.printStackTrace();
             }
