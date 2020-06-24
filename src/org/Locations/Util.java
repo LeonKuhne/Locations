@@ -40,7 +40,7 @@ public class Util {
                     for (String name : config.getKeys(false)) {
                         registerTeleport(plugin, name);
                         Location loc = null; // get this from they config value pair
-                        Location.tele.set(name, loc);
+                        Locations.tele.set(name, loc);
                     }
                 }};
 
