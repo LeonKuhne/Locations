@@ -111,10 +111,12 @@ public class Teleporter {
     }
 
     public void set(String name, Location location) {
+        Util.registerTeleport(this, name);
         locations.put(name, location);
     }
 
     public void delete(String name) {
+        Util.unregisterTeleport(this, name);
         locations.remove(name);
     }
 

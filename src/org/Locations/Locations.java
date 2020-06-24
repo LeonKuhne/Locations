@@ -26,7 +26,6 @@ public class Locations extends JavaPlugin {
     }};
     
     public static Teleporter tele;
-    private Map<String, Command> shortcuts;
 
     
     // DEFAULT
@@ -35,7 +34,6 @@ public class Locations extends JavaPlugin {
     @Override
     public void onEnable() {
         tele = new Teleporter(this);
-        shortcuts = Util.loadShortcuts();
         getServer().getPluginManager().registerEvents(new WorldSwitchListener(), this);
         getLogger().info("starting");
     }
@@ -99,7 +97,6 @@ public class Locations extends JavaPlugin {
                 case "add":
                 case "set":
                     try {
-                        Util.registerTeleport(this, name);
                         tele.set(name, player.getLocation());
                         help(player, "Set location " + ChatColor.GREEN + name);
                     } catch (Exception e) {
@@ -109,7 +106,6 @@ public class Locations extends JavaPlugin {
 
                 case "delete":
                     try {
-                        Util.unregisterTeleport(this, name);
                         tele.delete(name);
                         help(player, "Deleted location " + ChatColor.GREEN + name);
                     } catch (Exception e) {

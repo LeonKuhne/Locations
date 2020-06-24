@@ -11,7 +11,6 @@ import java.lang.reflect.Field;
 
 public class Util {
 
-    private FileConfiguration config;
 
     private File findOrCreateConfig(Plugin plugin) {
         // find
@@ -27,7 +26,7 @@ public class Util {
     }
     
     public static Map<String, Command> loadShortcuts(Plugin plugin) {
-        config = new YamlConfiguration();
+        FileConfiguration config = new YamlConfiguration();
         File file = findOrCreateConfig(plugin);
         
         if (file.exists()) {
@@ -35,9 +34,16 @@ public class Util {
                 config.load(file);
                 
                 // read in the commands
-                Sytem.out.println("" + config.getKeys());
+                Sytem.out.println(" -" + config.getKeys());
+                Map shortcuts = new HashMap() {{
+                    for (String name : config.getKeys()) {
+                        registerTeleport(plugin, name);
+                        Location loc = null; // get this from they config value pair
+                        tele.set(name, loc);
+                    }
+                }}
 
-                return null;
+                return shortcuts;
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -45,6 +51,8 @@ public class Util {
                 e.printStackTrace();
             }
         }
+
+        return null;
     }
 
     public static void saveShortcuts(Plugin plugin) {
