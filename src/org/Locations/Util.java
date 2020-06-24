@@ -6,6 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.command.Command;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.command.CommandMap;
+import org.bukkit.configuration.file.YamlConfiguration;
 
 public class Util {
 
@@ -33,7 +34,7 @@ public class Util {
                 config.load(file);
                 
                 // read in the commands
-                Sytem.out.println(config.getKeys());
+                Sytem.out.println("" + config.getKeys());
 
                 return null;
 
