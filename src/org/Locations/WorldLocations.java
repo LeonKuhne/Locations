@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.ChatColor;
+import org.bukkit.Tag;
 
 /**
  * @author leee leee
@@ -17,7 +18,7 @@ public class WorldLocations {
     public boolean remember;
     public int delay;
 
-    public WorldLocations(String serial) {
+    public WorldLocations(Tag tag) {
         System.out.println("we are eating breakfast!");
     }
 
