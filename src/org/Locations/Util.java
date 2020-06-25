@@ -79,7 +79,7 @@ public class Util {
         for (World world : worlds.keySet()) {
             String worldName = world.getName();
             WorldLocations worldLocs = worlds.get(world);
-            config.set(worldName, worldLocs.serialize());
+            config.set(worldName, worldLocs);
         }
 
         // save
