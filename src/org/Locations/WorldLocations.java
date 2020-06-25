@@ -53,17 +53,17 @@ public class WorldLocations implements ConfigurationSerializable {
     public void save(Player player) {
         Location loc = player.getLocation().clone();
         String worldName = player.getWorld().getName();
+        Map<String, Location> worlds;
 
         if (!lastLocations.containsKey(player)) {
-            // create
-            Map<String, Location> worlds = new HashMap();
-            worlds.put(worldName, loc);
+            // create player
+            worlds = new HashMap();
             lastLocations.put(player, worlds);
 
         } else {
-            // add
-            Map<World, Location> worlds = lastLocations.get(player);
-            worlds.put(worldName, loc);
+            // add location to player
+            worlds = lastLocations.get(player);
+            worlds.put(worldName, player.getLocation());
         }
     }
 
