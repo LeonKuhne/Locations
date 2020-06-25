@@ -78,7 +78,11 @@ public class Teleporter {
                 scheduler.runTaskLater(plugin, () -> {
                     // check if moved
                     if (tickDelay == 0 || before.equals(player.getLocation().getBlock().getLocation())) {
-                        teleportNow(player, name);
+                        try {
+                            teleportNow(player, name);
+                        } catch (Exception e) {
+                            player.sendMessage(ChatColor.RED + "failed to teleport, tell an admin")
+                        }
                     } else {
                         player.sendMessage(ChatColor.RED + "you moved! failed tp");
                     }
