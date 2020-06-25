@@ -16,7 +16,7 @@ import org.bukkit.configuration.serialization.SerializableAs;
 @SerializableAs("Vector")
 public class WorldLocations implements ConfigurationSerializable {
     
-    private Map<Player, Map<World, Location>> lastLocations;
+    private Map<Player, Map<String, Location>> lastLocations;
 
     public boolean remember;
     public int delay;
@@ -52,17 +52,18 @@ public class WorldLocations implements ConfigurationSerializable {
      */
     public void save(Player player) {
         Location loc = player.getLocation().clone();
+        String worldName = player.getWorld().getName();
 
         if (!lastLocations.containsKey(player)) {
             // create
             Map<World, Location> worlds = new HashMap();
-            worlds.put(player.getWorld(), loc);
+            worlds.put(worldName, loc);
             lastLocations.put(player, worlds);
 
         } else {
             // add
             Map<World, Location> worlds = lastLocations.get(player);
-            worlds.put(player.getWorld(), loc);
+            worlds.put(worldName, loc);
         }
     }
 
@@ -79,10 +80,12 @@ public class WorldLocations implements ConfigurationSerializable {
     //
     
     public Location getLastLoc(Player player, World world) {
-        Map<World, Location> worlds = lastLocations.get(player);
+        Map<String, Location> worlds = lastLocations.get(player);
+        String worldName = world.getName();
+
         if (worlds != null) {
-            if (worlds.containsKey(world)) {
-                return worlds.get(world);
+            if (worlds.containsKey(worldName)) {
+                return worlds.get(worldName);
             }
         }
         return null;

@@ -161,7 +161,7 @@ public class Locations extends JavaPlugin {
                             delay = tele.delay(name);
                         }
 
-                        help(player, "Delay for " + ChatColor.GOLD + player.getWorld().getName() + ChatColor.RESET + " is set to " + ChatColor.GREEN + delay);
+                        help(player, "Delay for " + ChatColor.GOLD + name + ChatColor.RESET + " is set to " + ChatColor.GREEN + delay);
                     } catch (Exception e) {
                         error(player, e.getMessage());
                     }
