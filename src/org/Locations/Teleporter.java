@@ -50,7 +50,7 @@ public class Teleporter {
         player.sendMessage("teleporting to " + name);
 
         // check if location exists
-        if (!locations.contains(name)) {
+        if (!locations.containsKey(name)) {
             player.sendMessage("location no longer exists");
             return;
         }
@@ -62,15 +62,21 @@ public class Teleporter {
             return;
         }
 
-        // check to save the players location
+        // get the world settings
+        WorldLocations worldLocs;
         String worldName = player.getWorld().getName();
         if (lastLocs.containsKey(worldName)) {
-            WorldLocations worldLocs = lastLocs.get(worldName);
+            // settings exist
+            worldLocs = lastLocs.get(worldName);
             
             // save world location
             if (worldLocs.remember){
                 worldLocs.save(player);
             }
+        } else {
+            // create settings
+            worldLocs = new WorldLocations();
+            lastLocs.put(worldName, worldLocs);
         }
 
         // teleport after delay
