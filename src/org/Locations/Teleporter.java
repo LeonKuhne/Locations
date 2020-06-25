@@ -81,7 +81,8 @@ public class Teleporter {
                         try {
                             teleportNow(player, name);
                         } catch (Exception e) {
-                            player.sendMessage(ChatColor.RED + "failed to teleport, tell an admin")
+                            player.sendMessage(ChatColor.RED + "failed to teleport, tell an admin");
+                            e.printStackTrace();
                         }
                     } else {
                         player.sendMessage(ChatColor.RED + "you moved! failed tp");
