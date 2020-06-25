@@ -87,7 +87,7 @@ public class Teleporter {
         }
     }
 
-    private void teleportNow(Player player, String locationName) {
+    private void teleportNow(Player player, String locationName) throws Exception {
         // determine destination
         Location destiLoc = locations.get(locationName);
         String destiWorldName = destiLoc.getWorld().getName();
