@@ -189,7 +189,7 @@ public class Teleporter {
         }
 
         // create if its a non existant real world
-        if (plugin.getServer().getWorlds().contains(name)) {
+        if (plugin.getServer().getWorlds().containsKey(name)) {
             WorldLocations worldLocs = new WorldLocations();
             lastLocs.put(name, worldLocs);
             return worldLocs;
