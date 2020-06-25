@@ -56,7 +56,7 @@ public class WorldLocations implements ConfigurationSerializable {
 
         if (!lastLocations.containsKey(player)) {
             // create
-            Map<World, Location> worlds = new HashMap();
+            Map<String, Location> worlds = new HashMap();
             worlds.put(worldName, loc);
             lastLocations.put(player, worlds);
 
