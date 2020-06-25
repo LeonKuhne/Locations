@@ -33,7 +33,13 @@ public class Teleporter {
         shortcuts = Util.createShortcuts(plugin, locations);
         lastLocs = Util.loadWorlds(plugin);
 
-        updateWorlds();
+        // load worlds
+        for (World world : plugin.getServer().getWorlds()) {
+            String worldName = world.getName();
+            if (!lastLocs.contains(worldName)) {
+                lastLocs.put(worldName, new WorldLocations());
+            }
+        }
     }
 
 
