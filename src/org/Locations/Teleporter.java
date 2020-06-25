@@ -158,45 +158,24 @@ public class Teleporter {
     }
 
     private WorldLocations getWL(String name) throws Exception {
-        WorldLocations worldLocs;
-        try {
-            worldLocs = getWorldLocations(name);
-        } catch (Exception e) {
-            worldLocs = getWorldLocationsByWorldName(name);
-        }
-        return worldLocs;
-    }
-
-    private WorldLocations getWorldLocationsByWorldName(String worldName) throws Exception {
-        World world = plugin.getServer().getWorld(worldName);
-        if (world != null)  {
-            return getWorldLocations(world);
-        }
-        throw new Exception("World name not identified");
-    }
-
-    private WorldLocations getWorldLocations(String name) throws Exception {
+        // get locations world name
         if (locations.containsKey(name)) {
-            World world = locations.get(name).getWorld();
-            return getWorldLocations(world);
+            name = locations.get(name).getWorld().getName();
         }
-        throw new Exception("Location not defined yet");
-    }
 
-    private WorldLocations getWorldLocations(World world) {
-        WorldLocations worldLocs;
+        // return the location if exists
+        if (lastLocs.containsKey(worldName)) {
+            return lastLocs.get(worldName);
+        }
 
-        // search for world details, if they exist
-        if (lastLocs.containsKey(world)) {
-            worldLocs = lastLocs.get(world);
+        // create it if its a real world and doesn't exist
+        if (plugin.getServer().getWorlds().contains(worldName)) {
+            WorldLocations worldLocs = new WorldLocations();
+            lastLocs.put(worldName, worldLocs);
             return worldLocs;
         }
-        
-        // create world details, or...
-        // throw new Exception("World not loaded, try /locs reload");
-        worldLocs = new WorldLocations();
-        lastLocs.put(world, worldLocs);
-        return worldLocs;
+
+        throw new Exception("Location not defined");
     }
 
     public String toString() {
