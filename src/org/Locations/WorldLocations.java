@@ -69,11 +69,11 @@ public class WorldLocations implements ConfigurationSerializable {
         }
     }
 
-    public void teleport(Player player, World world) {
-        Location loc = getLastLoc(player, world);
+    public void teleport(Player player, String worldName) {
+        Location loc = getLastLoc(player, worldName);
         if (loc != null && !player.getWorld().equals(loc.getWorld())) {
             player.teleport(loc);
-            player.sendMessage("returning you to your last location in " + ChatColor.GREEN + player.getWorld().getName());
+            player.sendMessage("returning you to your last location in " + ChatColor.GREEN + worldName);
         }
     }
 
@@ -81,10 +81,9 @@ public class WorldLocations implements ConfigurationSerializable {
     // UTIL
     //
     
-    public Location getLastLoc(Player player, World world) {
+    public Location getLastLoc(Player player, String worldName) {
         Map<String, Location> worlds = lastLocations.get(player);
-        String worldName = world.getName();
-
+        
         if (worlds != null) {
             if (worlds.containsKey(worldName)) {
                 return worlds.get(worldName);

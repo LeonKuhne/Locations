@@ -84,16 +84,16 @@ public class Teleporter {
     private void teleportNow(Player player, String locationName) {
         // determine destination
         Location destiLoc = locations.get(locationName);
-        World destiWorld = destiLoc.getWorld();
-        WorldLocations destiWorldLocs = getWorldLocations(destiWorld);
-        Location prevLoc = destiWorldLocs.getLastLoc(player, destiWorld);
+        String destiWorldName = destiLoc.getWorld().getName();
+        WorldLocations destiWorldLocs = getWorldLocations(destiWorldName);
+        Location prevLoc = destiWorldLocs.getLastLoc(player, destiWorldName);
 
         // if previous location exists, and world set to remember
         if (prevLoc != null && destiWorldLocs.remember) {
-            if (player.getWorld().equals(destiWorld)) {
+            if (player.getWorld().getName().equals(destiWorldName)) {
                 player.sendMessage(ChatColor.RED + "You're already in that world silly");
             } else {
-                player.sendMessage(ChatColor.AQUA + "Returning to " + ChatColor.GREEN + destiWorld.getName());
+                player.sendMessage(ChatColor.AQUA + "Returning to " + ChatColor.GREEN + destiWorldName);
                 player.teleport(prevLoc);
             }
         }
@@ -107,10 +107,10 @@ public class Teleporter {
 
     // assumes player is already in the desired world
     public void back(Player player) {
-        World destiWorld = player.getWorld();
-        WorldLocations worldLocs = lastLocs.get(destiWorld);
+        String destiWorldName = player.getWorld().getName();
+        WorldLocations worldLocs = lastLocs.get(destiWorldName);
         if (worldLocs != null) {
-            worldLocs.teleport(player, destiWorld);
+            worldLocs.teleport(player, destiWorldName);
         }
     }
 
