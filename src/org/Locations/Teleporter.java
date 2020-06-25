@@ -82,7 +82,11 @@ public class Teleporter {
             player.sendMessage("Stand still for " +ChatColor.AQUA+ delay +ChatColor.RESET+ " seconds");
             teleportDelay(player, name, delay);
         } else {
-            teleportNow(player, name);
+            try {
+                teleportNow(player, name);
+            } catch (Exception e) {
+                player.sendMessage(ChatColor.RED + e.getMessage());
+            }
         }
     }
 
@@ -199,7 +203,7 @@ public class Teleporter {
             return worldLocs;
         }
 
-        throw new Exception("Location not defined");
+        throw new Exception("Location no longer exists");
     }
 
     public String toString() {
