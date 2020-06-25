@@ -77,7 +77,7 @@ public class Util {
 
         // add to config
         for (String worldName : worlds.keySet()) {
-            WorldLocations worldLocs = worlds.get(world);
+            WorldLocations worldLocs = worlds.get(worldName);
             config.set(worldName, worldLocs);
         }
 
