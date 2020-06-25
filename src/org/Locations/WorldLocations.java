@@ -31,6 +31,12 @@ public class WorldLocations implements ConfigurationSerializable {
     // SERIALIZE
     //
     
+    public WorldLocations(Map<String, Object> args) {
+        remember = args.get("remember");
+        delay = args.get("delay");
+        lastLocations = args.get("locations");
+    }
+
     public Map<String, Object> serialize() {
         Map<String, Object> cereal = new HashMap();
         cereal.put("remember", remember);
@@ -39,10 +45,6 @@ public class WorldLocations implements ConfigurationSerializable {
         return cereal;
     }
 
-    public static Vector deserialize(Map<String, Object> args) {
-        System.out.println("got args: " + args);
-        return new Vector();
-    }
     
     // ACTIONS
     //
