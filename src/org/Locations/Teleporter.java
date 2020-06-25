@@ -80,7 +80,7 @@ public class Teleporter {
         int delay = worldLocs.delay;
         if (delay > 0) {
             player.sendMessage("Stand still for " +ChatColor.AQUA+ delay +ChatColor.RESET+ " seconds");
-            teleportDelay(worldLocs, name, delay);
+            teleportDelay(player, name, delay);
         } else {
             teleportNow(player, name);
         }
