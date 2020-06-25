@@ -70,14 +70,13 @@ public class Util {
         return worlds;
     }
 
-    public static void saveWorlds(Plugin plugin, Map<World, WorldLocations> worlds) {
+    public static void saveWorlds(Plugin plugin, Map<String, WorldLocations> worlds) {
         // load config
         File file = findFile(plugin, "leesworlds.yml");
         FileConfiguration config = loadConfig(plugin, file);
 
         // add to config
-        for (World world : worlds.keySet()) {
-            String worldName = world.getName();
+        for (String worldName : worlds.keySet()) {
             WorldLocations worldLocs = worlds.get(world);
             config.set(worldName, worldLocs);
         }
