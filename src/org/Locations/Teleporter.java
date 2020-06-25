@@ -58,12 +58,9 @@ public class Teleporter {
             return;
         }
        
-        // vars
-        player.sendMessage("teleporting to " + name);
-        String worldName = player.getWorld().getName();
-
-        // load or create settings
+        // load or create world settings
         WorldLocations worldLocs;
+        String worldName = player.getWorld().getName();
         if (lastLocs.containsKey(worldName)) {
             worldLocs = lastLocs.get(worldName);
         } else {
