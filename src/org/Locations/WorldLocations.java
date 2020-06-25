@@ -34,7 +34,7 @@ public class WorldLocations implements ConfigurationSerializable {
     public WorldLocations(Map<String, Object> args) {
         remember = ((Boolean)args.get("remember")).booleanValue();
         delay = ((Integer)args.get("delay")).intValue();
-        lastLocations = (Map<Player, Map<String, Locations>>)args.get("locations");
+        lastLocations = (Map<Player, Map<String, Location>>)args.get("locations");
     }
 
     public Map<String, Object> serialize() {
