@@ -63,6 +63,8 @@ public class Locations extends JavaPlugin {
             if (player.hasPermission("leeeleees.locs") && (string.equals("locs") || string.equals("locations"))) {
                 locsHandler(player, new ArrayList(Arrays.asList(args)));
                 return true;
+            } else {
+                player.sendMessage("You don't have permissions");
             }
 		}
 		
