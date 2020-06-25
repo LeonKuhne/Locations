@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.ChatColor;
 import org.bukkit.util.Vector;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
+import org.bukkit.configuration.serialization.SerializableAs;
 
 /**
  * @author leee leee
