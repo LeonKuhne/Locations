@@ -164,14 +164,14 @@ public class Teleporter {
         }
 
         // return the location if exists
-        if (lastLocs.containsKey(worldName)) {
-            return lastLocs.get(worldName);
+        if (lastLocs.containsKey(name)) {
+            return lastLocs.get(name);
         }
 
-        // create it if its a real world and doesn't exist
-        if (plugin.getServer().getWorlds().contains(worldName)) {
+        // create if its a non existant real world
+        if (plugin.getServer().getWorlds().contains(name)) {
             WorldLocations worldLocs = new WorldLocations();
-            lastLocs.put(worldName, worldLocs);
+            lastLocs.put(name, worldLocs);
             return worldLocs;
         }
 
@@ -180,14 +180,6 @@ public class Teleporter {
 
     public String toString() {
         return (locations.size() > 0) ? getNames().toString() : "None exist yet";
-    }
-
-    public void updateWorlds() {
-        for (World world : plugin.getServer().getWorlds()) {
-            if (!lastLocs.containsKey(world)) {
-                lastLocs.put(world, new WorldLocations());
-            }
-        }
     }
 
 }

@@ -25,7 +25,6 @@ public class Locations extends JavaPlugin {
         put("/locs delete/remove [name]", "delete a location");
         put("/locs remember [world/name] [true/false]", "remember last location");
         put("/locs delay [world/name] [sec]", "prevents teleporting during combat");
-        put("/locs reload", "reload the currently existing worlds");
     }};
     
     public static Teleporter tele;
@@ -94,12 +93,6 @@ public class Locations extends JavaPlugin {
             return;
         }
         
-        else if (args.size() == 1 && args.get(0).equals("reload")) {
-            help(player, "Reloading worlds");
-            tele.updateWorlds();
-            return;
-        }
-
         else if (args.size() >= 2) {
             String cmd = args.remove(0).toLowerCase();
             String name = args.remove(0).toLowerCase();
