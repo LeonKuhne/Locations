@@ -36,7 +36,7 @@ public class Teleporter {
         // load worlds
         for (World world : plugin.getServer().getWorlds()) {
             String worldName = world.getName();
-            if (!lastLocs.contains(worldName)) {
+            if (!lastLocs.containsKey(worldName)) {
                 lastLocs.put(worldName, new WorldLocations());
             }
         }
