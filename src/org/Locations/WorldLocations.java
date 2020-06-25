@@ -17,6 +17,7 @@ public class WorldLocations {
     public boolean remember;
     public int delay;
 
+
     public WorldLocations() {
         lastLocations = new HashMap();
         load();
@@ -25,7 +26,10 @@ public class WorldLocations {
     
     // SERIALIZE
     //
-
+    
+    public WorldLocations(String serial) {
+        
+    }
 
     // ACTIONS
     //

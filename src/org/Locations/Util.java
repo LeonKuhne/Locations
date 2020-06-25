@@ -62,7 +62,8 @@ public class Util {
 
         // read in worlds
         for (String worldName : config.getKeys(false)) {
-            WorldLocations worldLocs = config.getObject(worldName, WorldLocations.class);
+            String serialWorlds = config.getString(worldName);
+            WorldLocations worldLocs = new WorldLocations(serialWorlds);
             World world = plugin.getServer().getWorld(worldName);
             worlds.put(world, worldLocs);
         }
@@ -79,7 +80,7 @@ public class Util {
         for (World world : worlds.keySet()) {
             String worldName = world.getName();
             WorldLocations worldLocs = worlds.get(world);
-            config.set(worldName, worldLocs);
+            config.set(worldName, worldLocs.serialize());
         }
 
         // save
