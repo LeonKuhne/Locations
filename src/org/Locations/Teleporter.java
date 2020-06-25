@@ -21,7 +21,7 @@ public class Teleporter {
     private BukkitScheduler scheduler;
     private Map<String, Location> locations;
     private Map<String, Command> shortcuts;
-    private Map<World, WorldLocations> lastLocs;
+    private Map<String, WorldLocations> lastLocs;
     private Plugin plugin;
 
 

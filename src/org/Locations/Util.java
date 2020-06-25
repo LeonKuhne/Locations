@@ -53,8 +53,8 @@ public class Util {
     // WORLDS
     //
     
-    public static Map<World, WorldLocations> loadWorlds(Plugin plugin) {
-        Map<World, WorldLocations> worlds = new HashMap();
+    public static Map<String, WorldLocations> loadWorlds(Plugin plugin) {
+        Map<String, WorldLocations> worlds = new HashMap();
         
         // load config
         File file = findFile(plugin, "leesworlds.yml");
@@ -63,8 +63,8 @@ public class Util {
         // read in worlds
         for (String worldName : config.getKeys(false)) {
             WorldLocations worldLocs = config.getObject(worldName, WorldLocations.class);
-            World world = plugin.getServer().getWorld(worldName);
-            worlds.put(world, worldLocs);
+            String worldName = plugin.getServer().getWorld(worldName).getName();
+            worlds.put(worldName, worldLocs);
         }
 
         return worlds;
