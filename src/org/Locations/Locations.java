@@ -29,7 +29,11 @@ public class Locations extends JavaPlugin {
     
     public static Teleporter tele;
 
-    
+    static {
+        ConfigurationSerialization.registerClass(WorldLocations.class, "WorldLocations");
+    }
+
+
     // DEFAULT
     //
 
@@ -37,6 +41,7 @@ public class Locations extends JavaPlugin {
     public void onEnable() {
         shortcuts = new HashMap();
         tele = new Teleporter(this);
+
         getServer().getPluginManager().registerEvents(new WorldSwitchListener(), this);
         getLogger().info("loading locations");
     }

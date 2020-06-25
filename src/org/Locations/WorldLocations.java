@@ -6,11 +6,13 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.ChatColor;
+import 
 
 /**
  * @author leee leee
  */
-public class WorldLocations {
+@SerializableAs("Vector")
+public class WorldLocations implements ConfigurationSerializable {
     
     private Map<Player, Map<World, Location>> lastLocations;
 
@@ -27,10 +29,19 @@ public class WorldLocations {
     // SERIALIZE
     //
     
-    public WorldLocations(String serial) {
-        
+    public Map<String, Object> serialize() {
+        Map<String, Object> cereal = new HashMap();
+        cereal.put("remember", remember);
+        cereal.put("delay", delay);
+        cereal.put("locations", lastLocations);
+        return cereal;
     }
 
+    public static Vector deserialize(Map<String, Object> args) {
+        System.out.println("got args: " + args);
+        return new Vector();
+    }
+    
     // ACTIONS
     //
 
