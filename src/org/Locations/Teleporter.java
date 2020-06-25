@@ -48,49 +48,57 @@ public class Teleporter {
     
     public void teleport(Player player, String name) {
         player.sendMessage("teleporting to " + name);
-        World world = player.getWorld();
 
-        if (lastLocs.containsKey(world)) {
-            WorldLocations worldLocs = lastLocs.get(world);
+        // check if location exists
+        if (!locations.contains(name)) {
+            player.sendMessage("location no longer exists");
+            return;
+        }
+        
+        // if moving don't teleport
+        Vector vel = player.getVelocity();
+        if (vel.getX() != 0 || vel.getZ() != 0 || Math.abs(vel.getY()) >= 0.1) {
+            player.sendMessage("You're moving to fast, can't teleport");
+            return;
+        }
 
-            if (worldLocs != null) {
-
-                // save world location
-                if (worldLocs.remember){
-                    worldLocs.save(player);
-                }
-
-                // if moving don't teleport
-                Vector vel = player.getVelocity();
-                if (vel.getX() != 0 || vel.getZ() != 0 || Math.abs(vel.getY()) >= 0.1) {
-                    player.sendMessage("You're moving to fast, can't teleport");
-                    return;
-                }
-
-                // teleport after delay
-                int delay = worldLocs.delay;
-                long tickDelay = delay * 20l;
-                if (delay > 0) {
-                    player.sendMessage("Stand still for " + ChatColor.AQUA + delay + ChatColor.RESET + " seconds");
-                }
-
-                // teleport after delay
-                Location before = player.getLocation().getBlock().getLocation().clone();
-                scheduler.runTaskLater(plugin, () -> {
-                    // check if moved
-                    if (tickDelay == 0 || before.equals(player.getLocation().getBlock().getLocation())) {
-                        try {
-                            teleportNow(player, name);
-                        } catch (Exception e) {
-                            player.sendMessage(ChatColor.RED + "failed to teleport, tell an admin");
-                            e.printStackTrace();
-                        }
-                    } else {
-                        player.sendMessage(ChatColor.RED + "you moved! failed tp");
-                    }
-                }, tickDelay);
+        // check to save the players location
+        String worldName = player.getWorld().getName();
+        if (lastLocs.containsKey(worldName)) {
+            WorldLocations worldLocs = lastLocs.get(worldName);
+            
+            // save world location
+            if (worldLocs.remember){
+                worldLocs.save(player);
             }
         }
+
+        // teleport after delay
+        if (worldLocs.delay > 0) {
+            player.sendMessage("Stand still for " +ChatColor.AQUA+ delay +ChatColor.RESET+ " seconds");
+            teleportDelay(worldLocs);
+        } else {
+            teleportNow(player, locationName);
+        }
+    }
+
+    private void teleportDelay(Player player, String locationName) {
+        Location before = player.getLocation().getBlock().getLocation().clone();
+        long tickDelay = delay * 20l;
+
+        scheduler.runTaskLater(plugin, () -> {
+            // check if moved
+            if (tickDelay == 0 || before.equals(player.getLocation().getBlock().getLocation())) {
+                try {
+                    teleportNow(player, locationName);
+                } catch (Exception e) {
+                    player.sendMessage(ChatColor.RED + "failed to teleport, tell an admin");
+                    e.printStackTrace();
+                }
+            } else {
+                player.sendMessage(ChatColor.RED + "you moved! failed tp");
+            }
+        }, tickDelay);   
     }
 
     private void teleportNow(Player player, String locationName) throws Exception {
