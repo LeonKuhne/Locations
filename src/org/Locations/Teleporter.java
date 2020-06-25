@@ -77,15 +77,16 @@ public class Teleporter {
         }
 
         // teleport
-        if (worldLocs.delay > 0) {
+        int delay = worldLocs.delay;
+        if (delay > 0) {
             player.sendMessage("Stand still for " +ChatColor.AQUA+ delay +ChatColor.RESET+ " seconds");
-            teleportDelay(worldLocs);
+            teleportDelay(worldLocs, delay);
         } else {
             teleportNow(player, locationName);
         }
     }
 
-    private void teleportDelay(Player player, String locationName) {
+    private void teleportDelay(Player player, String locationName, int delay) {
         Location before = player.getLocation().getBlock().getLocation().clone();
         long tickDelay = delay * 20l;
 
