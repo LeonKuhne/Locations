@@ -47,6 +47,7 @@ public class Teleporter {
     //
     
     public void teleport(Player player, String name) {
+        player.sendMessage("teleporting to " + name);
         World world = player.getWorld();
 
         if (lastLocs.containsKey(world)) {
