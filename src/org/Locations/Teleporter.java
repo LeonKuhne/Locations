@@ -47,39 +47,36 @@ public class Teleporter {
     //
     
     public void teleport(Player player, String name) {
-        player.sendMessage("teleporting to " + name);
-
-        // check if location exists
+        // ensure location exists and prevent tp while moving
         if (!locations.containsKey(name)) {
             player.sendMessage("location no longer exists");
             return;
         }
-        
-        // if moving don't teleport
         Vector vel = player.getVelocity();
         if (vel.getX() != 0 || vel.getZ() != 0 || Math.abs(vel.getY()) >= 0.1) {
             player.sendMessage("You're moving to fast, can't teleport");
             return;
         }
-
-        // get the world settings
-        WorldLocations worldLocs;
+       
+        // vars
+        player.sendMessage("teleporting to " + name);
         String worldName = player.getWorld().getName();
+
+        // load or create settings
+        WorldLocations worldLocs;
         if (lastLocs.containsKey(worldName)) {
-            // settings exist
             worldLocs = lastLocs.get(worldName);
-            
-            // save world location
-            if (worldLocs.remember){
-                worldLocs.save(player);
-            }
         } else {
-            // create settings
             worldLocs = new WorldLocations();
             lastLocs.put(worldName, worldLocs);
         }
+        
+        // save world location
+        if (worldLocs.remember){
+            worldLocs.save(player);
+        }
 
-        // teleport after delay
+        // teleport
         if (worldLocs.delay > 0) {
             player.sendMessage("Stand still for " +ChatColor.AQUA+ delay +ChatColor.RESET+ " seconds");
             teleportDelay(worldLocs);
