@@ -167,7 +167,7 @@ public class Locations extends JavaPlugin {
                     tele.save();
                     
                     help(player, "Locations save");
-                    return                   
+                    return;
 
                 default:
                     help(player, "Unknown command: " + ChatColor.RED + cmd);
