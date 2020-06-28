@@ -92,7 +92,7 @@ public class Locations extends JavaPlugin {
             // list current locations
             help(player, tele.toString());
             return;
-        } else if (args.size() == 1) {
+        } else if (args.size() == 1 && args.get(0).equals("save")) {
             tele.save();
             help(player, "Locations saved");
             return;
