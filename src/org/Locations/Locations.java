@@ -25,6 +25,7 @@ public class Locations extends JavaPlugin {
         put("/locs delete/remove [name]", "delete a location");
         put("/locs remember [world/name] [true/false]", "remember last location");
         put("/locs delay [world/name] [sec]", "prevents teleporting during combat");
+        put("/locs save", "save the current locations");
     }};
     
     public static Teleporter tele;
@@ -161,6 +162,12 @@ public class Locations extends JavaPlugin {
                         error(player, e.getMessage());
                     }
                     return;
+                
+                case "save":
+                    tele.save();
+                    
+                    help(player, "Locations save");
+                    return                   
 
                 default:
                     help(player, "Unknown command: " + ChatColor.RED + cmd);
