@@ -92,9 +92,11 @@ public class Locations extends JavaPlugin {
             // list current locations
             help(player, tele.toString());
             return;
-        }
-        
-        else if (args.size() >= 2) {
+        } else if (args.size == 1) {
+            tele.save();
+            help(player, "Locations saved");
+            return;
+        } else {
             String cmd = args.remove(0).toLowerCase();
             String name = args.remove(0).toLowerCase();
 
@@ -163,12 +165,6 @@ public class Locations extends JavaPlugin {
                     }
                     return;
                 
-                case "save":
-                    tele.save();
-                    
-                    help(player, "Locations save");
-                    return;
-
                 default:
                     help(player, "Unknown command: " + ChatColor.RED + cmd);
             }
